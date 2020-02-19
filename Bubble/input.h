@@ -44,25 +44,25 @@ public:
     // 押している間TRUEを返す
     bool GetKey(int inputKey);
     // 押した瞬間だけTRUEを返す
-    bool GetButtonDown(PL_Num playerNum, int inputKey);
+    bool GetButtonDown(int inputKey);
     // 押した瞬間だけTRUEを返す(全てのボタン)
-    bool GetButtonDownAll(PL_Num plNum);
+    bool GetButtonDownAll(void);
     // 押している間TRUEを返す
-    bool GetButton(PL_Num playerNum, int inputKey);
+    bool GetButton(int inputKey);
     // 左スティックを倒している方向の値を返す
-    bool GetLeftThumb(PL_Num plNum, int  LeftThumb);
+    bool GetLeftThumb(int  LeftThumb);
     // 右スティックを倒している方向の値を返す
-    bool GetRightThumb(PL_Num plNum, int  RightThumb);
+    bool GetRightThumb(int  RightThumb);
 
 private:
-    XINPUT_STATE input[2] = {};
+    XINPUT_STATE input = {};
     char key[256] = {};// 入力情報
     char key_buf[256] = {};
-    int button[2][16] = {};
-    int ThumbLX[2] = {};
-    int ThumbLY[2] = {};
-    int ThumbRX[2] = {};
-    int ThumbRY[2] = {};
+    int button[16] = {};
+    int ThumbLX = {};
+    int ThumbLY = {};
+    int ThumbRX = {};
+    int ThumbRY = {};
     enum Input_State
     {
         Not, Down, Stay

@@ -8,8 +8,6 @@
 #define ROOT2       (1.41421356f)       // Å„2
 #define ROOT5       (2.2360679f)        // Å„5
 
-enum PL_Num { PL_1, PL_2 };
-
 class Sprite
 {
 public:
