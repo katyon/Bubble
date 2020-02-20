@@ -22,6 +22,7 @@ enum Thumb
 // —áj  Input::GetInstance()->GetButtonDown(PL_1, XINPUT_BUTTON_Y);
 // —á‚QjInput::GetInstance()->GetLeftThumb(PL_1, Before_Upper_Right);
 
+#define INPUT (Input::GetInstance())
 class Input
 {
 public:

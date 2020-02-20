@@ -9,17 +9,32 @@
 #define STR_MSGTTL_ASKFS		"起動処理"
 #define STR_MSG_ASKFS			"フルスクリーンで起動しますか？"
 
-enum Scene_State { Title, Choice, Game };
+enum Scene_State { State_Title, State_Choice, State_Game };
 
 // クラス --------------------------------------------------
+#define USABLE (Usable::getInstance())
 class Usable
 {
 public:
+    Usable(const Usable&) = delete;
+    Usable& operator=(const Usable&) = delete;
+    Usable(Usable&&) = delete;
+    Usable& operator=(Usable&&) = delete;
+    static Usable& getInstance()
+    {
+        static Usable instance;
+        return instance;
+    }
+
     void BeforeInit(void);  // DirectX初期化前処理
     void AfterInit(void);   // ゲーム開始前処理
     void MainLoop(void);    // ゲームメインループ
     void End(void);         // ゲーム終了後処理
     void changeSceneStateInit(Scene_State next_num);    // シーン遷移処理
+
+private:
+    Usable() = default;
+    ~Usable() = default;
 };
 
 // メインループ用の親クラス
