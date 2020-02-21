@@ -23,31 +23,9 @@ public:
     virtual void setRelPosX(float x) { rel_pos.x = x; }
     virtual void setRelPosY(float y) { rel_pos.y = y; }
 protected:
-    vec2<float> pos;
-    vec2<float> rel_pos;
+    vec2f pos;
+    vec2f rel_pos;
     int width = 0;
     int height = 0;
     int handle = 0;
 };
-
-//template<typename T>
-//class Singleton
-//{
-//public:
-//
-//    static T& getInstance()
-//    {
-//        static T instance;
-//        return instance;
-//    }
-//
-//protected:
-//    T() = default;
-//    virtual ~T() = default;
-//
-//private:
-//    T(const T&) = delete;
-//    T& operator=(const T&) = delete;
-//    T(T&&) = delete;
-//    T& operator=(T&&) = delete;
-//};

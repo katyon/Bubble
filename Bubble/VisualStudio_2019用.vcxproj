@@ -171,6 +171,7 @@
     <ClInclude Include="scene_choice.h" />
     <ClInclude Include="scene_game.h" />
     <ClInclude Include="scene_title.h" />
+    <ClInclude Include="singleton.h" />
     <ClInclude Include="system.h" />
     <ClInclude Include="vec2.h" />
   </ItemGroup>

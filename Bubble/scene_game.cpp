@@ -5,6 +5,7 @@
 #include "input.h"
 #include "main.h"
 #include "scene_game.h"
+#include "singleton.h"
 
 // ä÷êî ----------------------------------------------------------------------------------------
 void Game_Bg::init(void)

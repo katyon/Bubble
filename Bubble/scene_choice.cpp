@@ -5,6 +5,7 @@
 #include "input.h"
 #include "main.h"
 #include "scene_choice.h"
+#include "singleton.h"
 
 // ä÷êî ----------------------------------------------------------------------------------------
 void Choice_Bg::init(void)

@@ -5,6 +5,7 @@
 #include "input.h"
 #include "main.h"
 #include "scene_title.h"
+#include "singleton.h"
 
 // ä÷êî ----------------------------------------------------------------------------------------
 void Title_Bg::init(void)

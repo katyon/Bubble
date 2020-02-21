@@ -5,6 +5,7 @@
 #include "common.h"
 #include "main.h"
 #include "system.h"
+#include "singleton.h"
 #include "vec2.h"
 
 // ä÷êî ----------------------------------------------------------------------------------------
