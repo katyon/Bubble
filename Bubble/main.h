@@ -40,6 +40,7 @@ public:
     void draw(int GameTime);
     void end(void);
 private:
+    int Font00, Font01;
 
 };
 

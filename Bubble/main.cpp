@@ -25,11 +25,16 @@ Scene_State     state;
 // タイトル初期化処理
 void Scene_Title::init(void)
 {
+    Font00 = CreateFontToHandle("Yu Gothic UI", 70, 3, DX_FONTTYPE_ANTIALIASING_EDGE);
 }
 
 // タイトル更新処理
 void Scene_Title::update(int GameTime)
 {
+    while ( !ScreenFlip() && !ProcessMessage() && !ClearDrawScreen() )
+    {
+        DrawStringToHandle(100, 100, "施行回数", GetColor(255, 255, 255), Font00);
+    }
 }
 
 // タイトル描画処理
