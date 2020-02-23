@@ -24,7 +24,7 @@ enum Thumb
 // #define‚ðŽg‚Á‚Å"Input::GetInstance()"•”•ª‚ðÈ—ª‰Â”\
 // —áj#define INPUT Input::GetInstance()
 //     INPUT->GetButtonDownAll();
-#define INPUT Input::GetInstance()
+#define M_Input Input::GetInstance()
 class Input
 {
 public:

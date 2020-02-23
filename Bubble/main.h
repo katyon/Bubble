@@ -13,17 +13,22 @@
 enum Scene_State { State_Title, State_Choice, State_Game };
 
 // クラス --------------------------------------------------
-#define USABLE Usable::getInstance()
+#define M_Usable Usable::getInstance()
 class Usable :public Singleton<Usable>
 {
 public:
-    void BeforeInit(void);  // DirectX初期化前処理
-    void AfterInit(void);   // ゲーム開始前処理
-    void MainLoop(void);    // ゲームメインループ
-    void End(void);         // ゲーム終了後処理
-    void changeSceneStateInit(Scene_State next_num);    // シーン遷移処理
+    void    BeforeInit(void);  // DirectX初期化前処理
+    void    AfterInit(void);   // ゲーム開始前処理
+    void    MainLoop(void);    // ゲームメインループ
+    void    End(void);         // ゲーム終了後処理
 
+    void    setSceneState(int state) { sceneState = state; }
+    int     getSceneState(void) { return sceneState; }
+    void    countGameTime(void) { gameTime++; }
+    int     getGameTime(void) { return gameTime; }
 private:
+    int     sceneState = 0;
+    int     gameTime = 0;
 };
 
 // メインループ用の親クラス
@@ -31,40 +36,37 @@ class Scene
 {
 public:
     virtual void init(void) = 0;
-    virtual void update(int GameTime) = 0;
-    virtual void draw(int GameTime) = 0;
+    virtual void update(void) = 0;
+    virtual void draw(void) = 0;
     virtual void end(void) = 0;
 };
 
-class Scene_Title :public Scene
+#define M_SceneTitle Scene_Title::getInstance()
+class Scene_Title :public Scene, public Singleton<Scene_Title>
 {
 public:
     void init(void);
-    void update(int GameTime);
-    void draw(int GameTime);
+    void update(void);
+    void draw(void);
     void end(void);
-private:
-
 };
 
-class Scene_Choice :public Scene
+#define M_SceneChoice Scene_Choice::getInstance()
+class Scene_Choice :public Scene, public Singleton<Scene_Choice>
 {
 public:
     void init(void);
-    void update(int GameTime);
-    void draw(int GameTime);
+    void update(void);
+    void draw(void);
     void end(void);
-private:
-
 };
 
-class Scene_Game :public Scene
+#define M_SceneGame Scene_Game::getInstance()
+class Scene_Game :public Scene, public Singleton<Scene_Game>
 {
 public:
     void init(void);
-    void update(int GameTime);
-    void draw(int GameTime);
+    void update(void);
+    void draw(void);
     void end(void);
-private:
-
 };
