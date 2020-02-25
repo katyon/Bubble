@@ -5,11 +5,14 @@
 #include "bubble.h"
 #include "common.h"
 #include "input.h"
+#include "map.h"
 #include "system.h"
 
 //////////////////////////////////////////////////////////////////////////
 //	各ゲームで使用するクラスインスタンスやグローバル変数はここに記述
 //
+
+Bubble I_Bubble[BUBBLE_MAX];
 
 //
 // 定義ここまで
@@ -86,30 +89,34 @@ void Scene_Choice::end(void)
 // ゲーム初期化処理
 void Scene_Game::init(void)
 {
+    M_MapData.init();
     M_GameBg.init();
-    M_Bubble.init();
-    
+    for (int i = 0; i < BUBBLE_MAX; i++) I_Bubble[i].init(&I_Bubble[i]);
+    I_Bubble[0].loadGraph();
 }
 
 // ゲーム更新処理
 void Scene_Game::update(void)
 {
+    M_MapData.update();
     M_GameBg.update();
-    M_Bubble.update();
+    for (int i = 0; i < BUBBLE_MAX; i++) I_Bubble[i].update(&I_Bubble[i]);
 }
 
 // ゲーム描画処理
 void Scene_Game::draw(void)
 {
     M_GameBg.draw();
-    M_Bubble.draw();
+    M_MapData.draw();
+    for (int i = 0; i < BUBBLE_MAX; i++) I_Bubble[i].draw(&I_Bubble[i]);
 }
 
 // ゲーム終了処理
 void Scene_Game::end(void)
 {
+    M_MapData.end();
     M_GameBg.end();
-    M_Bubble.end();
+    I_Bubble[0].end();
 }
 
 //
@@ -177,7 +184,7 @@ void Usable::MainLoop(void)
             M_SceneGame.draw();            // ゲーム描画処理
             break;
         }
-       
+
         M_System.inputDebugKey();   // debug
         M_System.drawDebugString(); // debug
         ScreenFlip();   // VSYNCを待つ

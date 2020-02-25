@@ -106,5 +106,6 @@ public:
 
 };
 
+typedef vec2<int> vec2i;
 typedef vec2<float> vec2f;
 typedef vec2<double> vec2d;
