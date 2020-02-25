@@ -16,6 +16,9 @@
     <ClCompile Include="bubble.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="map.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -43,6 +46,9 @@
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
     <ClInclude Include="bg.h">
+      <Filter>ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="map.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,11 +1,10 @@
 // インクルード ----------------------------------------------------------------------------------
 #include "DxLib.h"
 
+#include "bubble.h"
 #include "common.h"
 #include "input.h"
 #include "main.h"
-#include "bubble.h"
-#include "singleton.h"
 
 // 関数 ----------------------------------------------------------------------------------------
 void Bubble::init(void)

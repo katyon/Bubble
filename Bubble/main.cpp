@@ -2,6 +2,7 @@
 #include "DxLib.h"
 
 #include "bg.h"
+#include "bubble.h"
 #include "common.h"
 #include "input.h"
 #include "system.h"
@@ -9,10 +10,6 @@
 //////////////////////////////////////////////////////////////////////////
 //	各ゲームで使用するクラスインスタンスやグローバル変数はここに記述
 //
-
-//Scene_Title     title;
-//Scene_Choice    choice;
-//Scene_Game      game;
 
 //
 // 定義ここまで
@@ -90,24 +87,29 @@ void Scene_Choice::end(void)
 void Scene_Game::init(void)
 {
     M_GameBg.init();
+    M_Bubble.init();
+    
 }
 
 // ゲーム更新処理
 void Scene_Game::update(void)
 {
     M_GameBg.update();
+    M_Bubble.update();
 }
 
 // ゲーム描画処理
 void Scene_Game::draw(void)
 {
     M_GameBg.draw();
+    M_Bubble.draw();
 }
 
 // ゲーム終了処理
 void Scene_Game::end(void)
 {
     M_GameBg.end();
+    M_Bubble.end();
 }
 
 //

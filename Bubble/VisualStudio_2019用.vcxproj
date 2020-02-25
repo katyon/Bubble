@@ -160,6 +160,7 @@
     <ClCompile Include="bubble.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="map.cpp" />
     <ClCompile Include="system.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +170,7 @@
     <ClInclude Include="DxLibFile\DxLib.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="map.h" />
     <ClInclude Include="singleton.h" />
     <ClInclude Include="system.h" />
     <ClInclude Include="vec2.h" />
