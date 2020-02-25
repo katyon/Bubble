@@ -17,6 +17,8 @@ void Bubble::init(void)
     {
         I_BubbleObj[i].init(&I_BubbleObj[i]);
     }
+    I_BubbleObj[0].exist = true;//debug
+    I_BubbleObj[1].exist = true;//debug
 }
 
 void Bubble::update(void)
@@ -47,21 +49,38 @@ void Bubble::end(void)
 
 void Bubble::fix(BubbleObj* obj)
 {
+    // Œ¸‘¬
+    if (obj->speed.x > 0.2) obj->speed.x -= BUBBLE_DECEL;
+    if (obj->speed.x < -0.2) obj->speed.x += BUBBLE_DECEL;
+    if (obj->speed.y > 0.2) obj->speed.y -= BUBBLE_DECEL;
+    if (obj->speed.y < -0.2) obj->speed.y += BUBBLE_DECEL;
+    if (obj->speed.x < 0.2 && obj->speed.x > -0.2) obj->speed.x = 0;
+    if (obj->speed.y < 0.2 && obj->speed.y > -0.2) obj->speed.y = 0;
+    // ‘¬“x§ŒÀ
+    if (obj->speed.x > BUBBLE_SPEED_MAX) obj->speed.x = BUBBLE_SPEED_MAX;
+    if (obj->speed.x < -BUBBLE_SPEED_MAX) obj->speed.x = -BUBBLE_SPEED_MAX;
+    if (obj->speed.y > BUBBLE_SPEED_MAX) obj->speed.y = BUBBLE_SPEED_MAX;
+    if (obj->speed.y < -BUBBLE_SPEED_MAX) obj->speed.y = -BUBBLE_SPEED_MAX;
+    // À•W•ÏŠ·
+    obj->pos.x += obj->speed.x;
+    obj->pos.y += obj->speed.y;
     obj->rel_pos.set(obj->pos.x + BUBBLE_SIZE, obj->pos.y + BUBBLE_SIZE);
 }
 
 void Bubble::inputDebugKey(BubbleObj* obj)
 {
-    if (M_Input->GetKey(KEY_INPUT_LEFT))    obj->pos.x -= BUBBLE_SPEED_X;
-    if (M_Input->GetKey(KEY_INPUT_RIGHT))   obj->pos.x += BUBBLE_SPEED_X;
-    if (M_Input->GetKey(KEY_INPUT_UP))      obj->pos.y -= BUBBLE_SPEED_Y;
-    if (M_Input->GetKey(KEY_INPUT_DOWN))    obj->pos.y += BUBBLE_SPEED_Y;
+    if (M_Input->GetKey(KEY_INPUT_LEFT))    obj->speed.x -= BUBBLE_ACCEL;
+    if (M_Input->GetKey(KEY_INPUT_RIGHT))   obj->speed.x += BUBBLE_ACCEL;
+    if (M_Input->GetKey(KEY_INPUT_UP))      obj->speed.y -= BUBBLE_ACCEL;
+    if (M_Input->GetKey(KEY_INPUT_DOWN))    obj->speed.y += BUBBLE_ACCEL;
 }
 
 void BubbleObj::init(BubbleObj* obj)
 {
     obj->pos.set(0, 0);
     obj->rel_pos.set(0, 0);
+    obj->speed.set(0, 0);
     obj->state = Stop;
     obj->exist = false;
+    obj->touchFloor = false;
 }

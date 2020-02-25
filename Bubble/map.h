@@ -17,7 +17,7 @@ public:
     void draw(void);
     void end(void);
     void setMapData(void);
-    void collMapChipWithBubble(void);
+    void collMapChipWithBubble(BubbleObj* obj);
 
 private:
     enum ChipData { Void, Floor, BubbleSpawner, GoalSpawner };

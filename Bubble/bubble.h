@@ -4,8 +4,9 @@
 // íËêî ----------------------------------------------------------------
 #define BUBBLE_MAX      (64)
 #define BUBBLE_SIZE     (32)
-#define BUBBLE_SPEED_X  (5)
-#define BUBBLE_SPEED_Y  (5)
+#define BUBBLE_ACCEL    (0.5f)
+#define BUBBLE_DECEL    (0.2f)
+#define BUBBLE_SPEED_MAX    (10.0f)
 
 enum BubbleState { Stop, Move, Hover, Drift, };
 // ÉNÉâÉX --------------------------------------------------------------
@@ -16,8 +17,10 @@ public:
 
     vec2f   pos;
     vec2f   rel_pos;
+    vec2f   speed;
     int     state = 0;
     bool    exist = false;
+    bool    touchFloor = false;
 };
 
 #define M_Bubble Bubble::getInstance()
