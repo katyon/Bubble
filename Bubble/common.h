@@ -8,8 +8,6 @@
 #define ROOT2       (1.41421356f)       // Å„2
 #define ROOT5       (2.2360679f)        // Å„5
 
-enum PL_Num { PL_1, PL_2 };
-
 class Sprite
 {
 public:
@@ -18,18 +16,15 @@ public:
     virtual void draw(void) {};
     virtual void end(void) {};
 
-    virtual float getPosX() { return posX; }
-    virtual float getPosY() { return posY; }
-    virtual float getRelPosX() { return rel_posX; }
-    virtual float getRelPosY() { return rel_posY; }
-    virtual void setRelPosX(float x) { rel_posX = x; }
-    virtual void setRelPosY(float y) { rel_posY = y; }
+    virtual float getPosX() { return pos.x; }
+    virtual float getPosY() { return pos.y; }
+    virtual float getRelPosX() { return rel_pos.x; }
+    virtual float getRelPosY() { return rel_pos.y; }
+    virtual void setRelPosX(float x) { rel_pos.x = x; }
+    virtual void setRelPosY(float y) { rel_pos.y = y; }
 protected:
-    vec2<float> vec;
-    float posX = 0;
-    float posY = 0;
-    float rel_posX = 0;
-    float rel_posY = 0;
+    vec2f pos;
+    vec2f rel_pos;
     int width = 0;
     int height = 0;
     int handle = 0;

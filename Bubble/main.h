@@ -3,16 +3,18 @@
 // インクルード
 #include <windows.h>
 #include <DxLib.h>
+#include "singleton.h"
 
 // 定数 ----------------------------------------------------
 #define STR_WINTTL				"Brightless"    // ウィンドウタイトル（任意に設定）
 #define STR_MSGTTL_ASKFS		"起動処理"
 #define STR_MSG_ASKFS			"フルスクリーンで起動しますか？"
 
-enum Scene_State { Title, Choice, Game };
+enum Scene_State { State_Title, State_Choice, State_Game };
 
 // クラス --------------------------------------------------
-class Usable
+#define USABLE Usable::getInstance()
+class Usable :public Singleton<Usable>
 {
 public:
     void BeforeInit(void);  // DirectX初期化前処理
@@ -20,6 +22,8 @@ public:
     void MainLoop(void);    // ゲームメインループ
     void End(void);         // ゲーム終了後処理
     void changeSceneStateInit(Scene_State next_num);    // シーン遷移処理
+
+private:
 };
 
 // メインループ用の親クラス
@@ -40,7 +44,6 @@ public:
     void draw(int GameTime);
     void end(void);
 private:
-    int Font00, Font01;
 
 };
 

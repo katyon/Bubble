@@ -19,9 +19,12 @@ enum Thumb
 /// InputClass How to
 // 1.Input.hをインクルードする
 // 2. Input::GetInstance()でインスタンスを経由してpublic関数を呼び出す。
-// 例）  Input::GetInstance()->GetButtonDown(PL_1, XINPUT_BUTTON_Y);
-// 例２）Input::GetInstance()->GetLeftThumb(PL_1, Before_Upper_Right);
-
+// 例）  Input::GetInstance()->GetButtonDown(XINPUT_BUTTON_Y);
+// 例２）Input::GetInstance()->GetLeftThumb(Before_Upper_Right);
+// #defineを使っで"Input::GetInstance()"部分を省略可能
+// 例）#define INPUT Input::GetInstance()
+//     INPUT->GetButtonDownAll();
+#define INPUT Input::GetInstance()
 class Input
 {
 public:
@@ -44,25 +47,25 @@ public:
     // 押している間TRUEを返す
     bool GetKey(int inputKey);
     // 押した瞬間だけTRUEを返す
-    bool GetButtonDown(PL_Num playerNum, int inputKey);
+    bool GetButtonDown(int inputKey);
     // 押した瞬間だけTRUEを返す(全てのボタン)
-    bool GetButtonDownAll(PL_Num plNum);
+    bool GetButtonDownAll(void);
     // 押している間TRUEを返す
-    bool GetButton(PL_Num playerNum, int inputKey);
+    bool GetButton(int inputKey);
     // 左スティックを倒している方向の値を返す
-    bool GetLeftThumb(PL_Num plNum, int  LeftThumb);
+    bool GetLeftThumb(int  LeftThumb);
     // 右スティックを倒している方向の値を返す
-    bool GetRightThumb(PL_Num plNum, int  RightThumb);
+    bool GetRightThumb(int  RightThumb);
 
 private:
-    XINPUT_STATE input[2] = {};
+    XINPUT_STATE input = {};
     char key[256] = {};// 入力情報
     char key_buf[256] = {};
-    int button[2][16] = {};
-    int ThumbLX[2] = {};
-    int ThumbLY[2] = {};
-    int ThumbRX[2] = {};
-    int ThumbRY[2] = {};
+    int button[16] = {};
+    int ThumbLX = {};
+    int ThumbLY = {};
+    int ThumbRX = {};
+    int ThumbRY = {};
     enum Input_State
     {
         Not, Down, Stay

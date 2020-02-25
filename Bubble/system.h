@@ -1,16 +1,13 @@
 #pragma once
-
 // íËêî ----------------------------------------------------------------
-#define SCREEN_WIDTH    (1920)
-#define SCREEN_HEIGHT   (1080)
 
 // ÉNÉâÉX --------------------------------------------------------------
-class System
+#define SYSTEM (System::getInstance())
+class System : public Singleton<System>
 {
 public:
-    void    drawDebugString();
+	void    drawDebugString(void);
 
 private:
-    unsigned int cr = 0;
-
+	unsigned int cr = 0;
 };

@@ -158,6 +158,9 @@
   <ItemGroup>
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="scene_choice.cpp" />
+    <ClCompile Include="scene_game.cpp" />
+    <ClCompile Include="scene_title.cpp" />
     <ClCompile Include="system.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +168,10 @@
     <ClInclude Include="DxLibFile\DxLib.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="scene_choice.h" />
+    <ClInclude Include="scene_game.h" />
+    <ClInclude Include="scene_title.h" />
+    <ClInclude Include="singleton.h" />
     <ClInclude Include="system.h" />
     <ClInclude Include="vec2.h" />
   </ItemGroup>

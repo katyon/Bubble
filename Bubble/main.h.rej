@@ -1,0 +1,9 @@
+diff a/Bubble/main.h b/Bubble/main.h	(rejected hunks)
+@@ -40,6 +40,7 @@
+     void draw(int GameTime);
+     void end(void);
+ private:
++    int Font00, Font01;
+ 
+ };
+ 
