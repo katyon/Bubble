@@ -12,7 +12,7 @@
 //	各ゲームで使用するクラスインスタンスやグローバル変数はここに記述
 //
 
-Bubble I_Bubble[BUBBLE_MAX];
+BubbleObj I_BubbleObj[BUBBLE_MAX];
 
 //
 // 定義ここまで
@@ -91,8 +91,7 @@ void Scene_Game::init(void)
 {
     M_MapData.init();
     M_GameBg.init();
-    for (int i = 0; i < BUBBLE_MAX; i++) I_Bubble[i].init(&I_Bubble[i]);
-    I_Bubble[0].loadGraph();
+    M_Bubble.init();
 }
 
 // ゲーム更新処理
@@ -100,7 +99,7 @@ void Scene_Game::update(void)
 {
     M_MapData.update();
     M_GameBg.update();
-    for (int i = 0; i < BUBBLE_MAX; i++) I_Bubble[i].update(&I_Bubble[i]);
+    M_Bubble.update();
 }
 
 // ゲーム描画処理
@@ -108,7 +107,7 @@ void Scene_Game::draw(void)
 {
     M_GameBg.draw();
     M_MapData.draw();
-    for (int i = 0; i < BUBBLE_MAX; i++) I_Bubble[i].draw(&I_Bubble[i]);
+    M_Bubble.draw();
 }
 
 // ゲーム終了処理
@@ -116,7 +115,7 @@ void Scene_Game::end(void)
 {
     M_MapData.end();
     M_GameBg.end();
-    I_Bubble[0].end();
+    M_Bubble.end();
 }
 
 //

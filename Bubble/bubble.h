@@ -1,4 +1,5 @@
 #pragma once
+#include "singleton.h"
 #include "vec2.h"
 // ’è” ----------------------------------------------------------------
 #define BUBBLE_MAX      (64)
@@ -8,25 +9,27 @@
 
 enum BubbleState { Stop, Move, Hover, Drift, };
 // ƒNƒ‰ƒX --------------------------------------------------------------
-class Bubble
+class BubbleObj
 {
 public:
-    void init(Bubble* obj);
-    void update(Bubble* obj);
-    void draw(Bubble* obj);
-    void end(void);
-    void fix(Bubble* obj);
-    void loadGraph(void);
-    void inputDebugKey(void);
+    void init(BubbleObj* obj);
 
-    int  getState(Bubble* obj) { return obj->state; }
-    void setState(Bubble* obj,int bubbleState) { obj->state = bubbleState; }
-
-private:
     vec2f   pos;
     vec2f   rel_pos;
     int     state = 0;
     bool    exist = false;
+};
 
-    static int handle;
+#define M_Bubble Bubble::getInstance()
+class Bubble :public Singleton<Bubble>
+{
+public:
+    void init(void);
+    void update(void);
+    void draw(void);
+    void end(void);
+    void fix(BubbleObj* obj);
+    void inputDebugKey(BubbleObj* obj);
+private:
+    int handle;
 };

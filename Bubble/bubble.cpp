@@ -6,48 +6,62 @@
 #include "input.h"
 #include "main.h"
 
-// static•Ï”‰Šú‰» -----------------------------------------------------------------------------
-int Bubble::handle;
+// externéŒ¾,static‰Šú‰» ----------------------------------------------------------------------
+extern BubbleObj I_BubbleObj[BUBBLE_MAX];
 
 // ŠÖ” ----------------------------------------------------------------------------------------
-void Bubble::init(Bubble* obj)
+void Bubble::init(void)
+{
+    handle = LoadGraph("Data\\Images\\Sprite\\bubble.png");
+    for (int i = 0; i < BUBBLE_MAX; i++)
+    {
+        I_BubbleObj[i].init(&I_BubbleObj[i]);
+    }
+}
+
+void Bubble::update(void)
+{
+    for (int i = 0; i < BUBBLE_MAX; i++)
+    {
+        if (I_BubbleObj[i].exist == false) continue;
+
+        M_Bubble.inputDebugKey(&I_BubbleObj[i]);
+        M_Bubble.fix(&I_BubbleObj[i]);
+    }
+}
+
+void Bubble::draw(void)
+{
+    for (int i = 0; i < BUBBLE_MAX; i++)
+    {
+        if (I_BubbleObj[i].exist == false) continue;
+
+        DrawExtendGraphF(I_BubbleObj[i].pos.x, I_BubbleObj[i].pos.y, I_BubbleObj[i].rel_pos.x, I_BubbleObj[i].rel_pos.y, handle, true);
+    }
+}
+
+void Bubble::end(void)
+{
+    DeleteGraph(handle);
+}
+
+void Bubble::fix(BubbleObj* obj)
+{
+    obj->rel_pos.set(obj->pos.x + BUBBLE_SIZE, obj->pos.y + BUBBLE_SIZE);
+}
+
+void Bubble::inputDebugKey(BubbleObj* obj)
+{
+    if (M_Input->GetKey(KEY_INPUT_LEFT))    obj->pos.x -= BUBBLE_SPEED_X;
+    if (M_Input->GetKey(KEY_INPUT_RIGHT))   obj->pos.x += BUBBLE_SPEED_X;
+    if (M_Input->GetKey(KEY_INPUT_UP))      obj->pos.y -= BUBBLE_SPEED_Y;
+    if (M_Input->GetKey(KEY_INPUT_DOWN))    obj->pos.y += BUBBLE_SPEED_Y;
+}
+
+void BubbleObj::init(BubbleObj* obj)
 {
     obj->pos.set(0, 0);
     obj->rel_pos.set(0, 0);
     obj->state = Stop;
     obj->exist = false;
-}
-
-void Bubble::update(Bubble* obj)
-{
-    obj->inputDebugKey();
-    obj->fix(obj);
-}
-
-void Bubble::draw(Bubble* obj)
-{
-    DrawExtendGraphF(obj->pos.x, obj->pos.y, obj->rel_pos.x, obj->rel_pos.y, Bubble::handle, true);
-}
-
-void Bubble::end(void)
-{
-    DeleteGraph(Bubble::handle);
-}
-
-void Bubble::fix(Bubble* obj)
-{
-    obj->rel_pos.set(obj->pos.x + BUBBLE_SIZE, obj->pos.y + BUBBLE_SIZE);
-}
-
-void Bubble::loadGraph(void)
-{
-    Bubble::handle = LoadGraph("Data\\Images\\Sprite\\bubble.png");
-}
-
-void Bubble::inputDebugKey(void)
-{
-    if (M_Input->GetKey(KEY_INPUT_LEFT))    pos.x -= BUBBLE_SPEED_X;
-    if (M_Input->GetKey(KEY_INPUT_RIGHT))   pos.x += BUBBLE_SPEED_X;
-    if (M_Input->GetKey(KEY_INPUT_UP))      pos.y -= BUBBLE_SPEED_Y;
-    if (M_Input->GetKey(KEY_INPUT_DOWN))    pos.y += BUBBLE_SPEED_Y;
 }
