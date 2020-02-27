@@ -10,6 +10,8 @@ public:
     void    inputDebugKey(void);
     void    changeSceneStateInit(int next_scene);    // ƒV[ƒ“‘JˆÚˆ—
     bool    isCollRect(vec2f a, vec2f rel_a, vec2f b, vec2f rel_b);
+    bool    isCollCircle(vec2f a, int ar, vec2f b, int br);
+    bool    isCollCircleWithRect(vec2f c,int r, vec2f a, vec2f rel_a);
 
 private:
     unsigned int cr = 0;

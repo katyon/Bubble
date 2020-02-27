@@ -1,10 +1,11 @@
-#include "main.h"
 #include "DxLib.h"
 
 #include "bg.h"
 #include "bubble.h"
 #include "common.h"
 #include "input.h"
+#include "main.h"
+#include "manager.h"
 #include "map.h"
 #include "system.h"
 #include "UI.h"
@@ -94,6 +95,7 @@ void Scene_Game::init(void)
     M_GameBg.init();
     M_Bubble.init();
     M_UI.init();
+    M_GameManager.init();
 }
 
 // ƒQ[ƒ€XVˆ—
@@ -103,6 +105,7 @@ void Scene_Game::update(void)
     M_GameBg.update();
     M_Bubble.update();
     M_UI.update();
+    M_GameManager.update();
 }
 
 // ƒQ[ƒ€•`‰æˆ—
@@ -112,6 +115,7 @@ void Scene_Game::draw(void)
     M_MapData.draw();
     M_Bubble.draw();
     M_UI.draw();
+    M_GameManager.draw();
 }
 
 // ƒQ[ƒ€I—¹ˆ—
@@ -121,6 +125,7 @@ void Scene_Game::end(void)
     M_GameBg.end();
     M_Bubble.end();
     M_UI.end();
+    M_GameManager.end();
 }
 
 //

@@ -5,7 +5,6 @@
 #define		MAPCHIP_H_MAX		(30)
 #define		MAPCHIP_V_MAX		(17)
 #define		MAPCHIP_SIZE		(64)
-//[Ver][Hor]
 
 // ƒNƒ‰ƒX --------------------------------------------------------------
 #define M_MapData MapData::getInstance()
@@ -17,11 +16,14 @@ public:
     void draw(void);
     void end(void);
     void setMapData(void);
-    int  getMapChipWithBubble(BubbleObj* obj);
     void collMapChipWithBubble(BubbleObj* obj);
 
 private:
-    enum ChipData { Void, Floor, BubbleSpawner, GoalSpawner };
+    enum ChipData
+    {
+        Void, Floor, Wall,
+        Lift, Needle, Splitter,
+        BubbleSpawner, GoalSpawner, Source
+    };
     int mapData[MAPCHIP_H_MAX][MAPCHIP_V_MAX];
-
 };

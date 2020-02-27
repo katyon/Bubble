@@ -11,14 +11,15 @@
 extern BubbleObj I_BubbleObj[BUBBLE_MAX];
 
 // 関数 ----------------------------------------------------------------------------------------
-void BubbleObj::init(BubbleObj* obj, vec2f pos)
+void BubbleObj::init(BubbleObj* obj, float posX, float posY)
 {
-    obj->pos.set(pos.x, pos.y);
+    obj->pos.set(posX, posY);
     obj->rel_pos.set(0, 0);
+    obj->center.set(0, 0);
     obj->speed.set(0, 0);
+    obj->radius = 0;
     obj->state = Stop;
     obj->level = 1;
-    obj->size = 0;
     obj->exist = false;
     obj->touchFloor = false;
     obj->touchBubble = false;
@@ -26,12 +27,10 @@ void BubbleObj::init(BubbleObj* obj, vec2f pos)
 
 void Bubble::init(void)
 {
-    vec2f debugPos;
-    debugPos.set(0, GAME_SCREEN_HEIGHT);
     handle = LoadGraph("Data\\Images\\Sprite\\bubble.png");
     for (int i = 0; i < BUBBLE_MAX; i++)
     {
-        I_BubbleObj[i].init(&I_BubbleObj[i], debugPos);
+        I_BubbleObj[i].init(&I_BubbleObj[i], 0, 0);
     }
     I_BubbleObj[0].pos.set(100, 600);//debug
     I_BubbleObj[1].pos.set(200, 600);//debug
@@ -46,7 +45,6 @@ void Bubble::init(void)
 
 void Bubble::update(void)
 {
-    M_Bubble.collAnotherBubble();
     M_Bubble.inputDebugKey();
     for (int i = 0; i < BUBBLE_MAX; i++)
     {
@@ -55,6 +53,7 @@ void Bubble::update(void)
         M_Bubble.move(&I_BubbleObj[i]);
         M_Bubble.fix(&I_BubbleObj[i]);
     }
+    M_Bubble.collAnotherBubble();
 }
 
 void Bubble::draw(void)
@@ -93,11 +92,12 @@ void Bubble::fix(BubbleObj* obj)
     if (obj->speed.y > BUBBLE_SPEED_MAX) obj->speed.y = BUBBLE_SPEED_MAX;
     if (obj->speed.y < -BUBBLE_SPEED_MAX) obj->speed.y = -BUBBLE_SPEED_MAX;
     // サイズ変換
-    obj->size = obj->level * 16 + 16;
+    obj->radius = obj->level * 8 + 8;
     // 座標変換
     obj->pos.x += obj->speed.x;
     obj->pos.y += obj->speed.y;
-    obj->rel_pos.set(obj->pos.x + obj->size, obj->pos.y + obj->size);
+    obj->rel_pos.set(obj->pos.x + obj->radius * 2, obj->pos.y + obj->radius * 2);
+    obj->center.set(obj->pos.x + obj->radius, obj->pos.y + obj->radius);
 }
 
 void Bubble::collAnotherBubble(void)
@@ -117,7 +117,7 @@ void Bubble::collAnotherBubble(void)
         {
             if (I_BubbleObj[j].exist == false) continue;
 
-            if (M_System.isCollRect(I_BubbleObj[i].pos, I_BubbleObj[i].rel_pos, I_BubbleObj[j].pos, I_BubbleObj[j].rel_pos))
+            if (M_System.isCollCircle(I_BubbleObj[i].center, I_BubbleObj[i].radius, I_BubbleObj[j].center, I_BubbleObj[j].radius))
             {
                 I_BubbleObj[i].touchBubble = true;
                 I_BubbleObj[i].level += I_BubbleObj[j].level;
@@ -129,10 +129,26 @@ void Bubble::collAnotherBubble(void)
 
 void Bubble::inputDebugKey(void)
 {
-    if (M_Input->GetKey(KEY_INPUT_Z))   I_BubbleObj[0].exist = true;
-    if (M_Input->GetKey(KEY_INPUT_X))   I_BubbleObj[1].exist = true;
-    if (M_Input->GetKey(KEY_INPUT_C))   I_BubbleObj[2].exist = true;
-    if (M_Input->GetKey(KEY_INPUT_V))   I_BubbleObj[3].exist = true;
+    if (M_Input->GetKey(KEY_INPUT_Z))
+    {
+        I_BubbleObj[0].init(&I_BubbleObj[0], 100, 600);
+        I_BubbleObj[0].exist = true;
+    }
+    if (M_Input->GetKey(KEY_INPUT_X))
+    {
+        I_BubbleObj[1].init(&I_BubbleObj[1], 200, 600);
+        I_BubbleObj[1].exist = true;
+    }
+    if (M_Input->GetKey(KEY_INPUT_C))
+    {
+        I_BubbleObj[2].init(&I_BubbleObj[2], 300, 600);
+        I_BubbleObj[2].exist = true;
+    }
+    if (M_Input->GetKey(KEY_INPUT_V))
+    {
+        I_BubbleObj[3].init(&I_BubbleObj[3], 400, 600);
+        I_BubbleObj[3].exist = true;
+    }
 
     if (M_Input->GetKey(KEY_INPUT_LEFT))    I_BubbleObj[0].speed.x -= BUBBLE_ACCEL;
     if (M_Input->GetKey(KEY_INPUT_RIGHT))   I_BubbleObj[0].speed.x += BUBBLE_ACCEL;

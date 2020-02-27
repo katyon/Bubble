@@ -6,6 +6,7 @@
 #include "common.h"
 #include "input.h"
 #include "main.h"
+#include "manager.h"
 #include "map.h"
 #include "system.h"
 #include "singleton.h"
@@ -24,16 +25,19 @@ void System::drawDebugString()
     DrawFormatString(0, 0, cr, "Title :1");
     DrawFormatString(0, 20, cr, "Choice:2");
     DrawFormatString(0, 40, cr, "Game  :3");
-    DrawFormatString(120, 0, cr, "bubblePosX  %f", I_BubbleObj[0].pos.x);
-    DrawFormatString(120, 20, cr, "bubblePosY  %f", I_BubbleObj[0].pos.y);
-    DrawFormatString(120, 40, cr, "bubbleSpeedX%f", I_BubbleObj[0].speed.x);
-    DrawFormatString(120, 60, cr, "bubbleSpeedY%f", I_BubbleObj[0].speed.y);
-    DrawFormatString(120, 80, cr, "touchBubble[0]%d", I_BubbleObj[0].touchBubble);
-    DrawFormatString(120, 100, cr, "touchBubble[1]%d", I_BubbleObj[1].touchBubble);
-    DrawFormatString(120, 120, cr, "touchBubble[2]%d", I_BubbleObj[2].touchBubble);
-    DrawFormatString(120, 140, cr, "touchBubble[3]%d", I_BubbleObj[3].touchBubble);
-    DrawFormatString(120, 160, cr, "level[0]%d", I_BubbleObj[0].level);
+    DrawFormatString(0, 60, cr, "gameClear:%d", M_GameManager.clear);
 
+    DrawFormatString(160, 0, cr, "bubblePosX  %f", I_BubbleObj[0].pos.x);
+    DrawFormatString(160, 20, cr, "bubblePosY  %f", I_BubbleObj[0].pos.y);
+    DrawFormatString(160, 40, cr, "bubbleSpeedX%f", I_BubbleObj[0].speed.x);
+    DrawFormatString(160, 60, cr, "bubbleSpeedY%f", I_BubbleObj[0].speed.y);
+    DrawFormatString(160, 80, cr, "touchBubble[0]%d", I_BubbleObj[0].touchBubble);
+    DrawFormatString(160, 100, cr, "touchBubble[1]%d", I_BubbleObj[1].touchBubble);
+    DrawFormatString(160, 120, cr, "touchBubble[2]%d", I_BubbleObj[2].touchBubble);
+    DrawFormatString(160, 140, cr, "touchBubble[3]%d", I_BubbleObj[3].touchBubble);
+    DrawFormatString(160, 160, cr, "level[0]%d", I_BubbleObj[0].level);
+    DrawFormatString(160, 180, cr, "centerX  %f", I_BubbleObj[0].center.x);
+    DrawFormatString(160, 200, cr, "centerY  %f", I_BubbleObj[0].center.y);
 }
 
 // デバックキー
@@ -81,5 +85,22 @@ void System::changeSceneStateInit(int nextScene)
 bool System::isCollRect(vec2f a, vec2f rel_a, vec2f b, vec2f rel_b)
 {
     if (a.x <= rel_b.x && b.x <= rel_a.x && a.y <= rel_b.y && b.y <= rel_a.y) return true;
+    return false;
+}
+
+bool System::isCollCircle(vec2f a, int ar, vec2f b, int br)
+{
+    if ((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y) <= (ar + br) * (ar + br)) return true;
+    return false;
+}
+
+bool System::isCollCircleWithRect(vec2f c, int r, vec2f a, vec2f rel_a)
+{
+    if ((c.x > a.x) && (c.x < rel_a.x) && (c.y > (a.y - r)) && (c.y < (rel_a.y + r)))   return true;
+    if ((c.y > a.y) && (c.y < rel_a.y) && (c.x > (a.x - r)) && (c.x < (rel_a.x + r)))   return true;
+    if ((a.x - c.x) * (a.x - c.x) + (a.y - c.y) * (a.y - c.y) < r * r)                  return true;
+    if ((rel_a.x - c.x) * (rel_a.x - c.x) + (a.y - c.y) * (a.y - c.y) < r * r)          return true;
+    if ((rel_a.x - c.x) * (rel_a.x - c.x) + (rel_a.y - c.y) * (rel_a.y - c.y) < r * r)  return true;
+    if ((a.x - c.x) * (a.x - c.x) + (rel_a.y - c.y) * (rel_a.y - c.y) < r * r)          return true;
     return false;
 }

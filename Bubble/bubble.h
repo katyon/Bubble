@@ -13,14 +13,15 @@ enum BubbleState { Stop, Move, Hover, Drift, };
 class BubbleObj
 {
 public:
-    void init(BubbleObj* obj, vec2f pos);
+    void init(BubbleObj* obj, float posX,float posY);
 
     vec2f   pos;
     vec2f   rel_pos;
+    vec2f   center;
     vec2f   speed;
+    int     radius = 0;
     int     state = 0;
     int     level = 0;
-    int     size = 0;
     bool    exist = false;
     bool    touchFloor = false;
     bool    touchBubble = false;
