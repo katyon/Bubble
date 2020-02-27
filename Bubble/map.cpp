@@ -44,6 +44,7 @@ void MapData::init(void)
 void MapData::update(void)
 {
     M_MapData.collMapChipWithBubble(&I_BubbleObj[0]);
+    M_MapData.collMapChipWithBubble(&I_BubbleObj[1]);
 }
 
 void MapData::draw(void)
@@ -98,9 +99,9 @@ void MapData::collMapChipWithBubble(BubbleObj* obj)
                 chipBottom = (Ver + 1) * MAPCHIP_SIZE;
                 //プレイヤー当たり判定部4点座標
                 bubbleCollLeft = obj->pos.x;
-                bubbleCollRight = obj->pos.x + BUBBLE_SIZE;
+                bubbleCollRight = obj->pos.x + obj->size;
                 bubbleCollTop = obj->pos.y;
-                bubbleCollBottom = obj->pos.y + BUBBLE_SIZE;
+                bubbleCollBottom = obj->pos.y + obj->size;
 
                 if (bubbleCollLeft + 5 < chipRight && bubbleCollRight - 5 > chipLeft&& bubbleCollTop < chipBottom && bubbleCollBottom > chipTop)
                 {
@@ -114,7 +115,7 @@ void MapData::collMapChipWithBubble(BubbleObj* obj)
                                 //判定のあったチップの上方向にチップが存在しなければ処理を行う
                                 if (test_mapData[Ver - 1][Hor] == 0 && Ver != 0)
                                 {
-                                    obj->pos.y = chipTop - BUBBLE_SIZE;
+                                    obj->pos.y = chipTop - obj->size;
                                     obj->speed.y = 0;
                                 }
                             }
@@ -135,9 +136,9 @@ void MapData::collMapChipWithBubble(BubbleObj* obj)
                 }
                 //押し戻し後のプレイヤー座標を再取得
                 bubbleCollLeft = obj->pos.x;
-                bubbleCollRight = obj->pos.x + BUBBLE_SIZE;
+                bubbleCollRight = obj->pos.x + obj->size;
                 bubbleCollTop = obj->pos.y;
-                bubbleCollBottom = obj->pos.y + BUBBLE_SIZE;
+                bubbleCollBottom = obj->pos.y + obj->size;
 
                 if (bubbleCollLeft < chipRight && bubbleCollRight > chipLeft&& bubbleCollTop + 15 < chipBottom && bubbleCollBottom - 15 > chipTop)
                 {
@@ -149,7 +150,7 @@ void MapData::collMapChipWithBubble(BubbleObj* obj)
                             //判定のあったチップの左方向にチップが存在しなければ処理を行う
                             if (test_mapData[Ver][Hor - 1] == 0 && Hor != 0)
                             {
-                                obj->pos.x = chipLeft - BUBBLE_SIZE;
+                                obj->pos.x = chipLeft - obj->size;
                             }
                         }
                         if (obj->speed.x < 0)
@@ -164,9 +165,9 @@ void MapData::collMapChipWithBubble(BubbleObj* obj)
                 }
                 //押し戻し後のプレイヤー座標を再取得
                 bubbleCollLeft = obj->pos.x;
-                bubbleCollRight = obj->pos.x + BUBBLE_SIZE;
+                bubbleCollRight = obj->pos.x + obj->size;
                 bubbleCollTop = obj->pos.y;
-                bubbleCollBottom = obj->pos.y + BUBBLE_SIZE;
+                bubbleCollBottom = obj->pos.y + obj->size;
 
                 //接地判定
                 if (bubbleCollBottom == chipTop && bubbleCollRight > chipLeft&& bubbleCollLeft < chipRight)

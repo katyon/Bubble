@@ -28,7 +28,12 @@ void System::drawDebugString()
     DrawFormatString(120, 20, cr, "bubblePosY  %f", I_BubbleObj[0].pos.y);
     DrawFormatString(120, 40, cr, "bubbleSpeedX%f", I_BubbleObj[0].speed.x);
     DrawFormatString(120, 60, cr, "bubbleSpeedY%f", I_BubbleObj[0].speed.y);
-    DrawFormatString(120, 80, cr, "touchBubble%d", I_BubbleObj[0].touchBubble);
+    DrawFormatString(120, 80, cr, "touchBubble[0]%d", I_BubbleObj[0].touchBubble);
+    DrawFormatString(120, 100, cr, "touchBubble[1]%d", I_BubbleObj[1].touchBubble);
+    DrawFormatString(120, 120, cr, "touchBubble[2]%d", I_BubbleObj[2].touchBubble);
+    DrawFormatString(120, 140, cr, "touchBubble[3]%d", I_BubbleObj[3].touchBubble);
+    DrawFormatString(120, 160, cr, "level[0]%d", I_BubbleObj[0].level);
+
 }
 
 // デバックキー

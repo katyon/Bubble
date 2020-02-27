@@ -3,11 +3,10 @@
 #include "vec2.h"
 // íËêî ----------------------------------------------------------------
 #define BUBBLE_MAX      (64)
-#define BUBBLE_SIZE     (32)
 #define BUBBLE_ACCEL    (0.5f)
 #define BUBBLE_DECEL    (0.2f)
 #define BUBBLE_SPEED_MAX    (10.0f)
-#define BUOYANCY        (0.5f)
+#define BUOYANCY        (0.3f)
 
 enum BubbleState { Stop, Move, Hover, Drift, };
 // ÉNÉâÉX --------------------------------------------------------------
@@ -21,6 +20,7 @@ public:
     vec2f   speed;
     int     state = 0;
     int     level = 0;
+    int     size = 0;
     bool    exist = false;
     bool    touchFloor = false;
     bool    touchBubble = false;
@@ -37,7 +37,7 @@ public:
     void move(BubbleObj* obj);
     void fix(BubbleObj* obj);
     void collAnotherBubble(void);
-    void inputDebugKey(BubbleObj* obj);
+    void inputDebugKey(void);
 
 private:
     int handle;
