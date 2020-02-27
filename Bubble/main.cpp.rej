@@ -1,18 +1,9 @@
 diff a/Bubble/main.cpp b/Bubble/main.cpp	(rejected hunks)
-@@ -25,11 +25,16 @@
- // �^�C�g������������
- void Scene_Title::init(void)
- {
-+    Font00 = CreateFontToHandle("Yu Gothic UI", 70, 3, DX_FONTTYPE_ANTIALIASING_EDGE);
+@@ -94,6 +94,7 @@
+     M_GameBg.init();
+     M_Bubble.init();
+     M_UI.init();
++>>>>>>> izanagi_develop
  }
  
- // �^�C�g���X�V����
- void Scene_Title::update(int GameTime)
- {
-+    while ( !ScreenFlip() && !ProcessMessage() && !ClearDrawScreen() )
-+    {
-+        DrawStringToHandle(100, 100, "�{�s��", GetColor(255, 255, 255), Font00);
-+    }
- }
- 
- // �^�C�g���`�揈��
+ // �Q�[���X�V����

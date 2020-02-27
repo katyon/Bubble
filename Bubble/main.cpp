@@ -7,6 +7,7 @@
 #include "input.h"
 #include "map.h"
 #include "system.h"
+#include "UI.h"
 
 //////////////////////////////////////////////////////////////////////////
 //	各ゲームで使用するクラスインスタンスやグローバル変数はここに記述
@@ -92,6 +93,7 @@ void Scene_Game::init(void)
     M_MapData.init();
     M_GameBg.init();
     M_Bubble.init();
+    M_UI.init();
 }
 
 // ゲーム更新処理
@@ -100,6 +102,7 @@ void Scene_Game::update(void)
     M_MapData.update();
     M_GameBg.update();
     M_Bubble.update();
+    M_UI.update();
 }
 
 // ゲーム描画処理
@@ -108,6 +111,7 @@ void Scene_Game::draw(void)
     M_GameBg.draw();
     M_MapData.draw();
     M_Bubble.draw();
+    M_UI.draw();
 }
 
 // ゲーム終了処理
@@ -116,6 +120,7 @@ void Scene_Game::end(void)
     M_MapData.end();
     M_GameBg.end();
     M_Bubble.end();
+    M_UI.end();
 }
 
 //
@@ -177,6 +182,7 @@ void Usable::MainLoop(void)
         case State_Choice:
             M_SceneChoice.update();        // ステージ選択更新処理
             M_SceneChoice.draw();          // ステージ選択描画処理
+            
             break;
         case State_Game:
             M_SceneGame.update();          // ゲーム更新処理
