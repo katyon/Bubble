@@ -7,20 +7,23 @@
 #define BUBBLE_ACCEL    (0.5f)
 #define BUBBLE_DECEL    (0.2f)
 #define BUBBLE_SPEED_MAX    (10.0f)
+#define BUOYANCY        (0.5f)
 
 enum BubbleState { Stop, Move, Hover, Drift, };
 // ƒNƒ‰ƒX --------------------------------------------------------------
 class BubbleObj
 {
 public:
-    void init(BubbleObj* obj);
+    void init(BubbleObj* obj, vec2f pos);
 
     vec2f   pos;
     vec2f   rel_pos;
     vec2f   speed;
     int     state = 0;
+    int     level = 0;
     bool    exist = false;
     bool    touchFloor = false;
+    bool    touchBubble = false;
 };
 
 #define M_Bubble Bubble::getInstance()
@@ -31,8 +34,11 @@ public:
     void update(void);
     void draw(void);
     void end(void);
+    void move(BubbleObj* obj);
     void fix(BubbleObj* obj);
+    void collAnotherBubble(void);
     void inputDebugKey(BubbleObj* obj);
+
 private:
     int handle;
 };

@@ -7,26 +7,29 @@
 #include "main.h"
 #include "map.h"
 
+// extern宣言,static初期化 ----------------------------------------------------------------------
+extern BubbleObj I_BubbleObj[BUBBLE_MAX];
+
 // 関数 ----------------------------------------------------------------------------------------
 static int test_mapData[MAPCHIP_V_MAX][MAPCHIP_H_MAX] = //debug
 {
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 };
 
 void MapData::init(void)
@@ -40,7 +43,7 @@ void MapData::init(void)
 
 void MapData::update(void)
 {
-
+    M_MapData.collMapChipWithBubble(&I_BubbleObj[0]);
 }
 
 void MapData::draw(void)
@@ -61,7 +64,7 @@ void MapData::end(void)
 
 void MapData::setMapData(void)
 {
-    //for (int Ver = 0; Ver < MAPCHIP_V_MAX; Ver++)
+    //for (int Ver = 0; Ver < MAPCHIP_V_MAX; Ver++
     //{
     //	for (int Hor = 0; Hor < MAPCHIP_H_MAX; Hor++)
     //	{
@@ -99,17 +102,17 @@ void MapData::collMapChipWithBubble(BubbleObj* obj)
                 bubbleCollTop = obj->pos.y;
                 bubbleCollBottom = obj->pos.y + BUBBLE_SIZE;
 
-                if (bubbleCollLeft + 15 < chipRight && bubbleCollRight - 15 > chipLeft&& bubbleCollTop < chipBottom && bubbleCollBottom > chipTop)
+                if (bubbleCollLeft + 5 < chipRight && bubbleCollRight - 5 > chipLeft&& bubbleCollTop < chipBottom && bubbleCollBottom > chipTop)
                 {
                     //縦方向の押し戻し
                     if (obj->speed.y != 0)
                     {
                         if (obj->speed.y > 0)
                         {
-                            if (bubbleCollLeft + 15 < chipRight && bubbleCollRight - 15 > chipLeft&& bubbleCollTop + 199 < chipBottom && bubbleCollBottom > chipTop)
+                            if (bubbleCollLeft + 15 < chipRight && bubbleCollRight - 15 > chipLeft&& bubbleCollTop + 15 < chipBottom && bubbleCollBottom > chipTop)
                             {
                                 //判定のあったチップの上方向にチップが存在しなければ処理を行う
-                                if ((test_mapData[Ver - 1][Hor] == 0 || test_mapData[Ver - 1][Hor] == 3 || test_mapData[Ver - 1][Hor] == 4 || test_mapData[Ver - 1][Hor] == 5) && Ver != 0)
+                                if (test_mapData[Ver - 1][Hor] == 0 && Ver != 0)
                                 {
                                     obj->pos.y = chipTop - BUBBLE_SIZE;
                                     obj->speed.y = 0;
@@ -118,13 +121,13 @@ void MapData::collMapChipWithBubble(BubbleObj* obj)
                         }
                         if (obj->speed.y < 0)
                         {
-                            if (bubbleCollLeft + 15 < chipRight && bubbleCollRight - 15 > chipLeft&& bubbleCollTop < chipBottom && bubbleCollBottom - 195 > chipTop)
+                            if (bubbleCollLeft + 15 < chipRight && bubbleCollRight - 15 > chipLeft&& bubbleCollTop < chipBottom && bubbleCollBottom - 15 > chipTop)
                             {
                                 //判定のあったチップの下方向にチップが存在しなければ処理を行う
-                                if ((test_mapData[Ver + 1][Hor] == 0 || test_mapData[Ver + 1][Hor] == 3 || test_mapData[Ver + 1][Hor] == 4 || test_mapData[Ver + 1][Hor] == 5) && Ver != (MAPCHIP_V_MAX - 1))
+                                if (test_mapData[Ver + 1][Hor] == 0 && Ver != (MAPCHIP_V_MAX - 1))
                                 {
-                                    obj->pos.y=chipBottom;
-                                    obj->speed.y=0;
+                                    obj->pos.y = chipBottom;
+                                    obj->speed.y = 0;
                                 }
                             }
                         }
@@ -144,17 +147,17 @@ void MapData::collMapChipWithBubble(BubbleObj* obj)
                         if (obj->speed.x > 0)
                         {
                             //判定のあったチップの左方向にチップが存在しなければ処理を行う
-                            if ((test_mapData[Ver][Hor - 1] == 0 || test_mapData[Ver][Hor - 1] == 3 || test_mapData[Ver][Hor - 1] == 4 || test_mapData[Ver][Hor - 1] == 5) && Hor != 0)
+                            if (test_mapData[Ver][Hor - 1] == 0 && Hor != 0)
                             {
-                                obj->pos.x=chipLeft - BUBBLE_SIZE;
+                                obj->pos.x = chipLeft - BUBBLE_SIZE;
                             }
                         }
                         if (obj->speed.x < 0)
                         {
                             //判定のあったチップの右方向にチップが存在しなければ処理を行う
-                            if ((test_mapData[Ver][Hor + 1] == 0 || test_mapData[Ver][Hor + 1] == 3 || test_mapData[Ver][Hor + 1] == 4 || test_mapData[Ver][Hor + 1] == 5) && Hor != (MAPCHIP_H_MAX - 1))
+                            if (test_mapData[Ver][Hor + 1] == 0 && Hor != (MAPCHIP_H_MAX - 1))
                             {
-                                obj->pos.x=chipRight;
+                                obj->pos.x = chipRight;
                             }
                         }
                     }
@@ -168,7 +171,7 @@ void MapData::collMapChipWithBubble(BubbleObj* obj)
                 //接地判定
                 if (bubbleCollBottom == chipTop && bubbleCollRight > chipLeft&& bubbleCollLeft < chipRight)
                 {
-                    obj->touchFloor=true;
+                    obj->touchFloor = true;
                 }
             }
         }

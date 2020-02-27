@@ -9,6 +9,7 @@ public:
     void    drawDebugString(void);
     void    inputDebugKey(void);
     void    changeSceneStateInit(int next_scene);    // ƒV[ƒ“‘JˆÚˆ—
+    bool    isCollRect(vec2f a, vec2f rel_a, vec2f b, vec2f rel_b);
 
 private:
     unsigned int cr = 0;

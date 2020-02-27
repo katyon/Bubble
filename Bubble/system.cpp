@@ -2,12 +2,17 @@
 #include "DxLib.h"
 #include <math.h>
 
+#include "bubble.h"
 #include "common.h"
 #include "input.h"
 #include "main.h"
+#include "map.h"
 #include "system.h"
 #include "singleton.h"
 #include "vec2.h"
+
+// extern宣言,static初期化 ----------------------------------------------------------------------
+extern BubbleObj I_BubbleObj[BUBBLE_MAX];
 
 // 関数 ----------------------------------------------------------------------------------------
 // デバック文字を描画
@@ -19,6 +24,11 @@ void System::drawDebugString()
     DrawFormatString(0, 0, cr, "Title :1");
     DrawFormatString(0, 20, cr, "Choice:2");
     DrawFormatString(0, 40, cr, "Game  :3");
+    DrawFormatString(120, 0, cr, "bubblePosX  %f", I_BubbleObj[0].pos.x);
+    DrawFormatString(120, 20, cr, "bubblePosY  %f", I_BubbleObj[0].pos.y);
+    DrawFormatString(120, 40, cr, "bubbleSpeedX%f", I_BubbleObj[0].speed.x);
+    DrawFormatString(120, 60, cr, "bubbleSpeedY%f", I_BubbleObj[0].speed.y);
+    DrawFormatString(120, 80, cr, "touchBubble%d", I_BubbleObj[0].touchBubble);
 }
 
 // デバックキー
@@ -61,4 +71,10 @@ void System::changeSceneStateInit(int nextScene)
     }
 
     M_Usable.setSceneState(nextScene);
+}
+
+bool System::isCollRect(vec2f a, vec2f rel_a, vec2f b, vec2f rel_b)
+{
+    if (a.x <= rel_b.x && b.x <= rel_a.x && a.y <= rel_b.y && b.y <= rel_a.y) return true;
+    return false;
 }

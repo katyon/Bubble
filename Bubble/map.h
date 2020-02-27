@@ -17,6 +17,7 @@ public:
     void draw(void);
     void end(void);
     void setMapData(void);
+    int  getMapChipWithBubble(BubbleObj* obj);
     void collMapChipWithBubble(BubbleObj* obj);
 
 private:
