@@ -25,7 +25,7 @@ void MapChip::init(void)
 
 void MapChip::update(void)
 {
-
+	
 }
 
 void MapChip::draw(void)
