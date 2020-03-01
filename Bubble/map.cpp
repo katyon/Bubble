@@ -1,53 +1,38 @@
 // インクルード ----------------------------------------------------------------------------------
 #include "DxLib.h"
 
-#include "bubble.h"
 #include "common.h"
+#include "file.h"
 #include "input.h"
 #include "main.h"
-#include "manager.h"
+#include "manage.h"
 #include "map.h"
 #include "system.h"
 
 // extern宣言,static初期化 ----------------------------------------------------------------------
-extern BubbleObj I_BubbleObj[BUBBLE_MAX];
+extern PlBubbleObj I_PlBubbleObj[PL_BUBBLE_MAX];
 
 // 関数 ----------------------------------------------------------------------------------------
-static int test_mapData[MAPCHIP_V_MAX][MAPCHIP_H_MAX] = //debug
-{
-    1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-    1,1,1,1,1,1,1,1,1,1,1,1,1,1,7,7,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-    1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,
-    1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,1,
-    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-    1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,
-    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-    1,1,1,6,1,1,6,1,1,6,1,1,6,1,1,6,1,1,1,6,1,1,1,6,1,1,6,1,1,1,
-    1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-};
-
 void MapData::init(void)
 {
     pos.set(0, 0);
     rel_pos.set(0, 0);
     src.set(0, 0);
-    width = MAPCHIP_SIZE;
-    height = MAPCHIP_SIZE;
+    width = 130;
+    height = 130;
     handle = LoadGraph("Data\\Images\\Sprite\\MapChip.png");
+    M_MapData.setMapData();
+    M_MapData.spawnBubble();
 }
 
 void MapData::update(void)
 {
-    M_MapData.collMapChipWithBubble(&I_BubbleObj[0]);
-    M_MapData.collMapChipWithBubble(&I_BubbleObj[1]);
+    for (int i = 0; i < PL_BUBBLE_MAX; i++)
+    {
+        if (I_PlBubbleObj[i].exist == false) continue;
+
+        M_MapData.collMapChipWithBubble(&I_PlBubbleObj[i]);
+    }
 }
 
 void MapData::draw(void)
@@ -56,20 +41,23 @@ void MapData::draw(void)
     {
         for (int Hor = 0; Hor < MAPCHIP_H_MAX; Hor++)
         {
-            switch (test_mapData[Ver][Hor])
+            switch (mapData[Ver][Hor])
             {
-            case Void:          src.set(MAPCHIP_SIZE * 0, MAPCHIP_SIZE * 0);  break;
-            case Floor:         src.set(MAPCHIP_SIZE * 1, MAPCHIP_SIZE * 0);  break;
-            case Wall:          src.set(MAPCHIP_SIZE * 2, MAPCHIP_SIZE * 0);  break;
-            case Lift:          src.set(MAPCHIP_SIZE * 0, MAPCHIP_SIZE * 1);  break;
-            case Needle:        src.set(MAPCHIP_SIZE * 1, MAPCHIP_SIZE * 1);  break;
-            case Splitter:      src.set(MAPCHIP_SIZE * 2, MAPCHIP_SIZE * 1);  break;
-            case BubbleSpawner: src.set(MAPCHIP_SIZE * 0, MAPCHIP_SIZE * 2);  break;
-            case GoalSpawner:   src.set(MAPCHIP_SIZE * 1, MAPCHIP_SIZE * 2);  break;
-            case Source:        src.set(MAPCHIP_SIZE * 2, MAPCHIP_SIZE * 2);  break;
+            case Void:          src.set(130 * 0, 130 * 0);  break;
+            case LFloor:        src.set(130 * 1, 130 * 0);  break;
+            case Floor:         src.set(130 * 2, 130 * 0);  break;
+            case RFloor:        src.set(130 * 3, 130 * 0);  break;
+            case Wall:          src.set(130 * 0, 130 * 1);  break;
+            case Lift:          src.set(130 * 1, 130 * 1);  break;
+            case Needle:        src.set(130 * 2, 130 * 1);  break;
+            case Splitter:      src.set(130 * 3, 130 * 1);  break;
+            case BubbleSpawner: src.set(130 * 0, 130 * 2);  break;
+            case GoalSpawner:   src.set(130 * 1, 130 * 2);  break;
+            case StartSource:   src.set(130 * 2, 130 * 2);  break;
+            case EndSource:     src.set(130 * 3, 130 * 2);  break;
             default: src.set(0, 0);  break;
             }
-            DrawRectGraphF(MAPCHIP_SIZE * Hor, MAPCHIP_SIZE * Ver, src.x, src.y, width, height, handle, true, false, false);
+            DrawRectExtendGraph(MAPCHIP_SIZE * Hor, MAPCHIP_SIZE * Ver, MAPCHIP_SIZE * Hor + MAPCHIP_SIZE, MAPCHIP_SIZE * Ver + MAPCHIP_SIZE, src.x, src.y, width, height, handle, true);
         }
     }
 }
@@ -81,16 +69,30 @@ void MapData::end(void)
 
 void MapData::setMapData(void)
 {
-    //for (int Ver = 0; Ver < MAPCHIP_V_MAX; Ver++
-    //{
-    //	for (int Hor = 0; Hor < MAPCHIP_H_MAX; Hor++)
-    //	{
-    //		mapData[Ver][Hor] = 0;
-    //	}
-    //}
+    
 }
 
-void MapData::collMapChipWithBubble(BubbleObj* obj)
+void MapData::spawnBubble(void)
+{
+    for (int Ver = 0; Ver < MAPCHIP_V_MAX; Ver++)
+    {
+        for (int Hor = 0; Hor < MAPCHIP_H_MAX; Hor++)
+        {
+            if (mapData[Ver][Hor] == BubbleSpawner)
+            {
+                for (int i = 0; i < PL_BUBBLE_MAX; i++)
+                {
+                    if (I_PlBubbleObj[i].exist == true) continue;
+                    I_PlBubbleObj[i].init(&I_PlBubbleObj[i], MAPCHIP_SIZE * Hor + MAPCHIP_SIZE / 2 - I_PlBubbleObj[i].radius, MAPCHIP_SIZE * Ver - I_PlBubbleObj[i].radius * 2);
+                    I_PlBubbleObj[i].exist = true;
+                    break;
+                }
+            }
+        }
+    }
+}
+
+void MapData::collMapChipWithBubble(PlBubbleObj* obj)
 {
     //チップ当たり判定処理
     for (int Ver = 0; Ver < MAPCHIP_V_MAX; Ver++)
@@ -109,7 +111,7 @@ void MapData::collMapChipWithBubble(BubbleObj* obj)
             rel_pos.set(pos.x + MAPCHIP_SIZE, pos.y + MAPCHIP_SIZE);
 
             // 押し出し判定
-            if (test_mapData[Ver][Hor] > 0)
+            if (mapData[Ver][Hor] > 0)
             {
                 //マップチップ4点座標
                 chipLeft = Hor * MAPCHIP_SIZE;
@@ -132,7 +134,7 @@ void MapData::collMapChipWithBubble(BubbleObj* obj)
                             if (bubbleCollLeft + 15 < chipRight && bubbleCollRight - 15 > chipLeft&& bubbleCollTop + 15 < chipBottom && bubbleCollBottom > chipTop)
                             {
                                 //判定のあったチップの上方向にチップが存在しなければ処理を行う
-                                if (test_mapData[Ver - 1][Hor] == 0 && Ver != 0)
+                                if (mapData[Ver - 1][Hor] == 0 && Ver != 0)
                                 {
                                     obj->pos.y = chipTop - obj->radius * 2;
                                     obj->speed.y = 0;
@@ -144,7 +146,7 @@ void MapData::collMapChipWithBubble(BubbleObj* obj)
                             if (bubbleCollLeft + 15 < chipRight && bubbleCollRight - 15 > chipLeft&& bubbleCollTop < chipBottom && bubbleCollBottom - 15 > chipTop)
                             {
                                 //判定のあったチップの下方向にチップが存在しなければ処理を行う
-                                if (test_mapData[Ver + 1][Hor] == 0 && Ver != (MAPCHIP_V_MAX - 1))
+                                if (mapData[Ver + 1][Hor] == 0 && Ver != (MAPCHIP_V_MAX - 1))
                                 {
                                     obj->pos.y = chipBottom;
                                     obj->speed.y = 0;
@@ -167,7 +169,7 @@ void MapData::collMapChipWithBubble(BubbleObj* obj)
                         if (obj->speed.x > 0)
                         {
                             //判定のあったチップの左方向にチップが存在しなければ処理を行う
-                            if (test_mapData[Ver][Hor - 1] == 0 && Hor != 0)
+                            if (mapData[Ver][Hor - 1] == 0 && Hor != 0)
                             {
                                 obj->pos.x = chipLeft - obj->radius * 2;
                             }
@@ -175,7 +177,7 @@ void MapData::collMapChipWithBubble(BubbleObj* obj)
                         if (obj->speed.x < 0)
                         {
                             //判定のあったチップの右方向にチップが存在しなければ処理を行う
-                            if (test_mapData[Ver][Hor + 1] == 0 && Hor != (MAPCHIP_H_MAX - 1))
+                            if (mapData[Ver][Hor + 1] == 0 && Hor != (MAPCHIP_H_MAX - 1))
                             {
                                 obj->pos.x = chipRight;
                             }
@@ -194,34 +196,43 @@ void MapData::collMapChipWithBubble(BubbleObj* obj)
                     obj->touchFloor = true;
                 }
             }
-            // 針
-            if (test_mapData[Ver][Hor] == Needle)
+            if (M_System.isCollCircleWithRect(obj->center, obj->radius, pos, rel_pos))
             {
-                if (M_System.isCollCircleWithRect(obj->center, obj->radius, pos, rel_pos))
+                switch (mapData[Ver][Hor])
                 {
+                    // 針
+                case Needle:
                     obj->exist = false;
-                }
-            }
-            // 分裂
-            if (test_mapData[Ver][Hor] == Splitter)
-            {
-
-            }
-            // 沸き
-            if (test_mapData[Ver][Hor] == BubbleSpawner)
-            {
-
-            }
-            // ゴール
-            if (test_mapData[Ver][Hor] == GoalSpawner)
-            {
-                if (M_System.isCollCircleWithRect(obj->center, obj->radius, pos, rel_pos) && obj->level == 4)
-                {
+                    break;
+                    // 分裂
+                case Splitter:
+                    obj->pos.x -= MAPCHIP_SIZE / 2 - 10;
+                    obj->pos.y -= MAPCHIP_SIZE + obj->radius * 3;
+                    obj->speed.x = -2;
+                    if (obj->level > 1)
+                    {
+                        obj->level -= 1;
+                        for (int i = 0; i < PL_BUBBLE_MAX; i++)
+                        {
+                            if (I_PlBubbleObj[i].exist == true) continue;
+                            I_PlBubbleObj[i].init(&I_PlBubbleObj[i], obj->pos.x + MAPCHIP_SIZE * 2, obj->pos.y);
+                            I_PlBubbleObj[i].speed.x = 2;
+                            I_PlBubbleObj[i].exist = true;
+                            I_PlBubbleObj[i].level = obj->level;
+                            break;
+                        }
+                    }
+                    break;
+                    // ゴール
+                case GoalSpawner:
                     M_GameManager.clear = true;
+                    break;
+                default:
+                    break;
                 }
             }
             // 水流
-            if (test_mapData[Ver][Hor] == Source)
+            if (mapData[Ver][Hor] == StartSource)
             {
 
             }

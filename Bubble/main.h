@@ -10,7 +10,7 @@
 #define STR_MSGTTL_ASKFS		"起動処理"
 #define STR_MSG_ASKFS			"フルスクリーンで起動しますか？"
 
-enum Scene_State { State_Title, State_Choice, State_Game };
+enum Scene_State { State_Editor, State_Title, State_Choice, State_Game };
 
 // クラス --------------------------------------------------
 #define M_Usable Usable::getInstance()
@@ -39,6 +39,16 @@ public:
     virtual void update(void) = 0;
     virtual void draw(void) = 0;
     virtual void end(void) = 0;
+};
+
+#define M_SceneEditor Scene_Editor::getInstance()
+class Scene_Editor :public Scene, public Singleton<Scene_Editor>
+{
+public:
+    void init(void);
+    void update(void);
+    void draw(void);
+    void end(void);
 };
 
 #define M_SceneTitle Scene_Title::getInstance()

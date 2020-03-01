@@ -158,19 +158,24 @@
   <ItemGroup>
     <ClCompile Include="bg.cpp" />
     <ClCompile Include="bubble.cpp" />
-    <ClCompile Include="manager.cpp" />
+    <ClCompile Include="editor.cpp" />
+    <ClCompile Include="file.cpp" />
+    <ClCompile Include="manage.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="system.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="waterSource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bg.h" />
     <ClInclude Include="bubble.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="DxLibFile\DxLib.h" />
-    <ClInclude Include="manager.h" />
+    <ClInclude Include="editor.h" />
+    <ClInclude Include="file.h" />
+    <ClInclude Include="manage.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="map.h" />
@@ -178,6 +183,7 @@
     <ClInclude Include="system.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="vec2.h" />
+    <ClInclude Include="waterSource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
