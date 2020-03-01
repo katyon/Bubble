@@ -1,81 +1,105 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="input.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="system.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
     <ClCompile Include="bg.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="bubble.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="map.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="UI.cpp">
+    <ClCompile Include="editor.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="Elastic.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="file.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="manage.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="map.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
     <ClCompile Include="stage_select.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="system.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="waterSource.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="common.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="DxLibFile\DxLib.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="input.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="system.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="vec2.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="singleton.h">
-      <Filter>ヘッダーファイル</Filter>
+    <ClInclude Include="bg.h">
+      <Filter>ヘッダファイル</Filter>
     </ClInclude>
     <ClInclude Include="bubble.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>ヘッダファイル</Filter>
     </ClInclude>
-    <ClInclude Include="bg.h">
-      <Filter>ヘッダーファイル</Filter>
+    <ClInclude Include="common.h">
+      <Filter>ヘッダファイル</Filter>
     </ClInclude>
-    <ClInclude Include="map.h">
-      <Filter>ヘッダーファイル</Filter>
+    <ClInclude Include="DxLibFile\DxLib.h">
+      <Filter>ヘッダファイル</Filter>
     </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>ヘッダーファイル</Filter>
+    <ClInclude Include="editor.h">
+      <Filter>ヘッダファイル</Filter>
     </ClInclude>
     <ClInclude Include="Elastic.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="file.h">
+      <Filter>ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="manage.h">
+      <Filter>ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="map.h">
+      <Filter>ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="singleton.h">
+      <Filter>ヘッダファイル</Filter>
     </ClInclude>
     <ClInclude Include="stage_select.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="system.h">
+      <Filter>ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="vec2.h">
+      <Filter>ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="waterSource.h">
+      <Filter>ヘッダファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="ヘッダーファイル">
-      <UniqueIdentifier>{a7f30f49-ebbe-41c7-a423-7aff53ac626d}</UniqueIdentifier>
+    <Filter Include="ヘッダファイル">
+      <UniqueIdentifier>{1d9fa5e7-7f7a-4ef3-ae5a-f18e1c3d9f82}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソースファイル">
-      <UniqueIdentifier>{bdbd57f2-d3c4-442b-b160-ba2e7314b2ad}</UniqueIdentifier>
+      <UniqueIdentifier>{903ce033-4242-45b0-bcfa-f402e0775613}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

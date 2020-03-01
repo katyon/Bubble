@@ -1,9 +1,9 @@
 diff a/Bubble/main.cpp b/Bubble/main.cpp	(rejected hunks)
-@@ -94,6 +94,7 @@
-     M_GameBg.init();
-     M_Bubble.init();
-     M_UI.init();
-+>>>>>>> izanagi_develop
- }
+@@ -12,6 +12,7 @@
+ #include "UI.h"
+ #include "stage_select.h"
+ #include "waterSource.h"
++>>>>>>> katyo_develop
  
- // �Q�[���X�V����
+ //////////////////////////////////////////////////////////////////////////
+ //	�e�Q�[���Ŏg�p����N���X�C���X�^���X��O���[�o���ϐ��͂����ɋL�q

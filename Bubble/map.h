@@ -1,12 +1,18 @@
 #pragma once
+#include "bubble.h"
 #include "common.h"
 #include "singleton.h"
 // íËêî ----------------------------------------------------------------
 #define		MAPCHIP_H_MAX		(30)
 #define		MAPCHIP_V_MAX		(17)
 #define		MAPCHIP_SIZE		(64)
-//[Ver][Hor]
 
+enum ChipData
+{
+    Void, LFloor, Floor, RFloor,
+    Wall, Lift, Needle, Splitter,
+    BubbleSpawner, GoalSpawner, StartSource, EndSource
+};
 // ÉNÉâÉX --------------------------------------------------------------
 #define M_MapData MapData::getInstance()
 class MapData :public Sprite, public Singleton<MapData>
@@ -17,11 +23,10 @@ public:
     void draw(void);
     void end(void);
     void setMapData(void);
-    int  getMapChipWithBubble(BubbleObj* obj);
-    void collMapChipWithBubble(BubbleObj* obj);
+    void spawnBubble(void);
+    void collMapChipWithBubble(PlBubbleObj* obj);
+
+    int mapData[MAPCHIP_V_MAX][MAPCHIP_H_MAX];
 
 private:
-    enum ChipData { Void, Floor, BubbleSpawner, GoalSpawner };
-    int mapData[MAPCHIP_H_MAX][MAPCHIP_V_MAX];
-
 };

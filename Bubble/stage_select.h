@@ -2,7 +2,6 @@
 #include "singleton.h"
 #include "vec2.h"
 
-
 // ƒNƒ‰ƒX ----------------------------------------------------------------------------------------
 #define M_Stage_Select Stage_Select::getInstance()
 class Stage_Select : public Singleton<Stage_Select>
@@ -20,7 +19,6 @@ private:
 
 
 public:
-
     int  select;
     float size;
 

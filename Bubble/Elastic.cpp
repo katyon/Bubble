@@ -1,3 +1,4 @@
+#include "common.h"
 #include "Elastic.h"
 
 float Elastic::easeIn(float t, float b, float c, float d) {

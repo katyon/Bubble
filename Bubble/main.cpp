@@ -1,23 +1,59 @@
-#include "main.h"
 #include "DxLib.h"
 
 #include "bg.h"
 #include "bubble.h"
+#include "editor.h"
 #include "common.h"
 #include "input.h"
+#include "main.h"
+#include "manage.h"
 #include "map.h"
 #include "system.h"
 #include "UI.h"
 #include "stage_select.h"
+#include "waterSource.h"
 
 //////////////////////////////////////////////////////////////////////////
 //	各ゲームで使用するクラスインスタンスやグローバル変数はここに記述
 //
 
-BubbleObj I_BubbleObj[BUBBLE_MAX];
+PlBubbleObj I_PlBubbleObj[PL_BUBBLE_MAX];
+WaterObj    I_WatereObj[SOURCE_MAX];
 
 //
 // 定義ここまで
+//////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////
+//	ここからエディターの処理
+//
+
+// エディター初期化処理
+void Scene_Editor::init(void)
+{
+    M_Editor.init();
+}
+
+// エディター更新処理
+void Scene_Editor::update(void)
+{
+    M_Editor.update();
+}
+
+// エディター描画処理
+void Scene_Editor::draw(void)
+{
+    M_Editor.draw();
+}
+
+// エディター終了処理
+void Scene_Editor::end(void)
+{
+    M_Editor.end();
+}
+
+//
+//	エディターの処理ここまで
 //////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////
@@ -95,10 +131,11 @@ void Scene_Choice::end(void)
 // ゲーム初期化処理
 void Scene_Game::init(void)
 {
-    M_MapData.init();
     M_GameBg.init();
     M_Bubble.init();
+    M_MapData.init();
     M_UI.init();
+    M_GameManager.init();
 }
 
 // ゲーム更新処理
@@ -108,6 +145,7 @@ void Scene_Game::update(void)
     M_GameBg.update();
     M_Bubble.update();
     M_UI.update();
+    M_GameManager.update();
 }
 
 // ゲーム描画処理
@@ -117,6 +155,7 @@ void Scene_Game::draw(void)
     M_MapData.draw();
     M_Bubble.draw();
     M_UI.draw();
+    M_GameManager.draw();
 }
 
 // ゲーム終了処理
@@ -126,6 +165,7 @@ void Scene_Game::end(void)
     M_GameBg.end();
     M_Bubble.end();
     M_UI.end();
+    M_GameManager.end();
 }
 
 //
@@ -180,23 +220,27 @@ void Usable::MainLoop(void)
 
         switch (sceneState)
         {
+        case State_Editor:
+            M_SceneEditor.update();        // エディター更新処理
+            break;
         case State_Title:
             M_SceneTitle.update();         // タイトル更新処理
             M_SceneTitle.draw();           // タイトル描画処理
+            M_System.drawDebugString(); // debug
             break;
         case State_Choice:
             M_SceneChoice.update();        // ステージ選択更新処理
             M_SceneChoice.draw();          // ステージ選択描画処理
-            
+            M_System.drawDebugString(); // debug
             break;
         case State_Game:
             M_SceneGame.update();          // ゲーム更新処理
             M_SceneGame.draw();            // ゲーム描画処理
+            M_System.drawDebugString(); // debug
             break;
         }
 
         M_System.inputDebugKey();   // debug
-        M_System.drawDebugString(); // debug
         ScreenFlip();   // VSYNCを待つ
 
         // ESCキーだけは常に監視。押されたら直ちに終了

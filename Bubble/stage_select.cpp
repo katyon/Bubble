@@ -1,7 +1,7 @@
-#include "stage_select.h"
 #include "Elastic.h" 
 #include "main.h"
 #include "input.h"
+#include "stage_select.h"
 
 #define STAGE_MAX 6
 void Stage_Select::init()
@@ -28,7 +28,7 @@ void Stage_Select::update()
         {
             size = 0.5;
         }
-        if (timer > 150)
+        if (timer > 90)
         {
             timer = 12;
             select = 1;
