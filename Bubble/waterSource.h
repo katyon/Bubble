@@ -7,10 +7,11 @@
 class WaterObj
 {
 public:
-    void init(WaterObj* obj, float posX, float posY, float rel_posX, float rel_posY);
+    void init(WaterObj* obj, float posY, float rel_posY);
 
     vec2f   pos;
     vec2f   rel_pos;
+    int     num;
     bool    exist = false;
 };
 
@@ -24,5 +25,8 @@ public:
     void end(void);
 
 private:
+    int nowNum;
+    int maxNum;
     int handle;
+    unsigned int cr;
 };

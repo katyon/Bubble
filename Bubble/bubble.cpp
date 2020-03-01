@@ -143,23 +143,23 @@ void PlBubble::inputDebugKey(void)
         I_PlBubbleObj[3].exist = true;
     }
 
-    if (M_Input->GetKey(KEY_INPUT_LEFT))    I_PlBubbleObj[0].speed.x -= BUBBLE_ACCEL;
-    if (M_Input->GetKey(KEY_INPUT_RIGHT))   I_PlBubbleObj[0].speed.x += BUBBLE_ACCEL;
-    if (M_Input->GetKey(KEY_INPUT_UP))      I_PlBubbleObj[0].speed.y -= BUBBLE_ACCEL;
-    if (M_Input->GetKey(KEY_INPUT_DOWN))    I_PlBubbleObj[0].speed.y += BUBBLE_ACCEL;
+    //if (M_Input->GetKey(KEY_INPUT_LEFT))    I_PlBubbleObj[0].speed.x -= BUBBLE_ACCEL;
+    //if (M_Input->GetKey(KEY_INPUT_RIGHT))   I_PlBubbleObj[0].speed.x += BUBBLE_ACCEL;
+    //if (M_Input->GetKey(KEY_INPUT_UP))      I_PlBubbleObj[0].speed.y -= BUBBLE_ACCEL;
+    //if (M_Input->GetKey(KEY_INPUT_DOWN))    I_PlBubbleObj[0].speed.y += BUBBLE_ACCEL;
 
-    if (M_Input->GetKey(KEY_INPUT_A))   I_PlBubbleObj[1].speed.x -= BUBBLE_ACCEL;
-    if (M_Input->GetKey(KEY_INPUT_D))   I_PlBubbleObj[1].speed.x += BUBBLE_ACCEL;
-    if (M_Input->GetKey(KEY_INPUT_W))   I_PlBubbleObj[1].speed.y -= BUBBLE_ACCEL;
-    if (M_Input->GetKey(KEY_INPUT_S))   I_PlBubbleObj[1].speed.y += BUBBLE_ACCEL;
+    //if (M_Input->GetKey(KEY_INPUT_A))   I_PlBubbleObj[1].speed.x -= BUBBLE_ACCEL;
+    //if (M_Input->GetKey(KEY_INPUT_D))   I_PlBubbleObj[1].speed.x += BUBBLE_ACCEL;
+    //if (M_Input->GetKey(KEY_INPUT_W))   I_PlBubbleObj[1].speed.y -= BUBBLE_ACCEL;
+    //if (M_Input->GetKey(KEY_INPUT_S))   I_PlBubbleObj[1].speed.y += BUBBLE_ACCEL;
 
-    if (M_Input->GetKey(KEY_INPUT_F))   I_PlBubbleObj[2].speed.x -= BUBBLE_ACCEL;
-    if (M_Input->GetKey(KEY_INPUT_H))   I_PlBubbleObj[2].speed.x += BUBBLE_ACCEL;
-    if (M_Input->GetKey(KEY_INPUT_T))   I_PlBubbleObj[2].speed.y -= BUBBLE_ACCEL;
-    if (M_Input->GetKey(KEY_INPUT_G))   I_PlBubbleObj[2].speed.y += BUBBLE_ACCEL;
+    //if (M_Input->GetKey(KEY_INPUT_F))   I_PlBubbleObj[2].speed.x -= BUBBLE_ACCEL;
+    //if (M_Input->GetKey(KEY_INPUT_H))   I_PlBubbleObj[2].speed.x += BUBBLE_ACCEL;
+    //if (M_Input->GetKey(KEY_INPUT_T))   I_PlBubbleObj[2].speed.y -= BUBBLE_ACCEL;
+    //if (M_Input->GetKey(KEY_INPUT_G))   I_PlBubbleObj[2].speed.y += BUBBLE_ACCEL;
 
-    if (M_Input->GetKey(KEY_INPUT_J))   I_PlBubbleObj[3].speed.x -= BUBBLE_ACCEL;
-    if (M_Input->GetKey(KEY_INPUT_L))   I_PlBubbleObj[3].speed.x += BUBBLE_ACCEL;
-    if (M_Input->GetKey(KEY_INPUT_I))   I_PlBubbleObj[3].speed.y -= BUBBLE_ACCEL;
-    if (M_Input->GetKey(KEY_INPUT_K))   I_PlBubbleObj[3].speed.y += BUBBLE_ACCEL;
+    //if (M_Input->GetKey(KEY_INPUT_J))   I_PlBubbleObj[3].speed.x -= BUBBLE_ACCEL;
+    //if (M_Input->GetKey(KEY_INPUT_L))   I_PlBubbleObj[3].speed.x += BUBBLE_ACCEL;
+    //if (M_Input->GetKey(KEY_INPUT_I))   I_PlBubbleObj[3].speed.y -= BUBBLE_ACCEL;
+    //if (M_Input->GetKey(KEY_INPUT_K))   I_PlBubbleObj[3].speed.y += BUBBLE_ACCEL;
 }
