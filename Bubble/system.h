@@ -1,6 +1,6 @@
 #pragma once
 // ’è” ----------------------------------------------------------------
-
+#include "singleton.h"
 // ƒNƒ‰ƒX --------------------------------------------------------------
 #define M_System (System::getInstance())
 class System : public Singleton<System>

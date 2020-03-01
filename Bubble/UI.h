@@ -12,7 +12,6 @@ private:
     LPCSTR font_path = "azuki.ttf";
     int trial;
     int Color;
-
 #if 1
     int timer;
 #endif // 1

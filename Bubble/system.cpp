@@ -8,7 +8,7 @@
 #include "main.h"
 #include "map.h"
 #include "system.h"
-#include "singleton.h"
+#include "stage_select.h"
 #include "vec2.h"
 
 // extern宣言,static初期化 ----------------------------------------------------------------------
@@ -29,6 +29,8 @@ void System::drawDebugString()
     DrawFormatString(120, 40, cr, "bubbleSpeedX%f", I_BubbleObj[0].speed.x);
     DrawFormatString(120, 60, cr, "bubbleSpeedY%f", I_BubbleObj[0].speed.y);
     DrawFormatString(120, 80, cr, "touchBubble%d", I_BubbleObj[0].touchBubble);
+    DrawFormatString(120, 100, cr, "Stage_Select.size:%f", M_Stage_Select.size);
+
 }
 
 // デバックキー

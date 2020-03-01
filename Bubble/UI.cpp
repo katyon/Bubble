@@ -4,7 +4,6 @@
 #include "UI.h"
 #include "input.h"
 
-
 // ä÷êî ----------------------------------------------------------------------------------------
 
 void UI::init()
@@ -15,10 +14,12 @@ void UI::init()
 
 void UI::update()
 {
+
 #if 1  // 0 Ç≈ñ≥å¯âª
     timer++;
     trial = timer / 60;
 #endif // DEBUG
+
 }
 
 void UI::draw()

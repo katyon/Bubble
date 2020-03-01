@@ -8,6 +8,7 @@
 #include "map.h"
 #include "system.h"
 #include "UI.h"
+#include "stage_select.h"
 
 //////////////////////////////////////////////////////////////////////////
 //	各ゲームで使用するクラスインスタンスやグローバル変数はここに記述
@@ -59,24 +60,28 @@ void Scene_Title::end(void)
 void Scene_Choice::init(void)
 {
     M_ChoiceBg.init();
+    M_Stage_Select.init();
 }
 
 // ステージ選択更新処理
 void Scene_Choice::update(void)
 {
     M_ChoiceBg.update();
+    M_Stage_Select.update();
 }
 
 // ステージ選択描画処理
 void Scene_Choice::draw(void)
 {
     M_ChoiceBg.draw();
+    M_Stage_Select.draw();
 }
 
 // ステージ選択終了処理
 void Scene_Choice::end(void)
 {
     M_ChoiceBg.end();
+    M_Stage_Select.end();
 }
 
 //
