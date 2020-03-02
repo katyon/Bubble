@@ -146,7 +146,7 @@ void Scene_Game::init(void)
     M_MapData.init();
     M_WaterSource.init();
     M_Goals.init();
-    M_UI.init();
+    //M_UI.init();
     M_GameManager.init();
 }
 
@@ -158,7 +158,7 @@ void Scene_Game::update(void)
     M_Bubble.update();
     M_WaterSource.update();
     M_Goals.update();
-    M_UI.update();
+   // M_UI.update();
     M_GameManager.update();
 }
 
@@ -170,7 +170,7 @@ void Scene_Game::draw(void)
     M_Bubble.draw();
     M_WaterSource.draw();
     M_Goals.draw();
-    M_UI.draw();
+    //M_UI.draw();
     M_GameManager.draw();
 }
 
@@ -182,7 +182,7 @@ void Scene_Game::end(void)
     M_Bubble.end();
     M_WaterSource.end();
     M_Goals.end();
-    M_UI.end();
+    //M_UI.end();
     M_GameManager.end();
 }
 
