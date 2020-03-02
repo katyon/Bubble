@@ -26,7 +26,7 @@ void PlBubbleObj::init(PlBubbleObj* obj, float posX, float posY)
 
 void PlBubble::init(void)
 {
-    handle = LoadGraph("Data\\Images\\Sprite\\bubble.png");
+    handle = LoadGraph("Data\\Images\\Sprite\\plBubble.png");
     for (int i = 0; i < PL_BUBBLE_MAX; i++)
     {
         I_PlBubbleObj[i].init(&I_PlBubbleObj[i], 0, 0);
@@ -35,7 +35,7 @@ void PlBubble::init(void)
 
 void PlBubble::update(void)
 {
-    M_Bubble.inputDebugKey();
+    //M_Bubble.inputDebugKey();
     for (int i = 0; i < PL_BUBBLE_MAX; i++)
     {
         if (I_PlBubbleObj[i].exist == false) continue;

@@ -1,5 +1,6 @@
 #include "Elastic.h" 
 #include "main.h"
+#include "manage.h"
 #include "input.h"
 #include "stage_select.h"
 
@@ -8,7 +9,7 @@ void Stage_Select::init()
 {
     handle = LoadGraph("Data\\Images\\Sprite\\bubble_number.png");
     pos = { 200, 200 };
-    select = 0;
+    select = 1;
     timer = 0;
     size = 0;
     bubble_effect = true;
@@ -40,6 +41,7 @@ void Stage_Select::update()
     {
         if (M_Input->GetKeyDown(KEY_INPUT_LEFT)) { select -= 1; timer = 12; }
         if (M_Input->GetKeyDown(KEY_INPUT_RIGHT)) { select += 1; timer = 12; }
+        if (M_Input->GetKeyDown(KEY_INPUT_SPACE)) M_SelectManager.change = true;
     }
 
     if (select > STAGE_MAX) { select = 1; }

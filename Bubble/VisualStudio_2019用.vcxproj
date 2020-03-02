@@ -161,6 +161,7 @@
     <ClCompile Include="Elastic.cpp" />
     <ClCompile Include="editor.cpp" />
     <ClCompile Include="file.cpp" />
+    <ClCompile Include="goals.cpp" />
     <ClCompile Include="manage.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="Elastic.h" />
     <ClInclude Include="editor.h" />
     <ClInclude Include="file.h" />
+    <ClInclude Include="goals.h" />
     <ClInclude Include="manage.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="main.h" />

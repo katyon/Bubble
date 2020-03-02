@@ -3,6 +3,7 @@
 #include "bg.h"
 #include "bubble.h"
 #include "editor.h"
+#include "goals.h"
 #include "common.h"
 #include "input.h"
 #include "main.h"
@@ -19,6 +20,7 @@
 
 PlBubbleObj I_PlBubbleObj[PL_BUBBLE_MAX];
 WaterObj    I_WatereObj[SOURCE_MAX];
+GoalsObj    I_GoalsObj[GOALS_MAX];
 
 //
 // 定義ここまで
@@ -64,24 +66,28 @@ void Scene_Editor::end(void)
 void Scene_Title::init(void)
 {
     M_TitleBg.init();
+    M_TitleManager.init();
 }
 
 // タイトル更新処理
 void Scene_Title::update(void)
 {
     M_TitleBg.update();
+    M_TitleManager.update();
 }
 
 // タイトル描画処理
 void Scene_Title::draw(void)
 {
     M_TitleBg.draw();
+    M_TitleManager.draw();
 }
 
 // タイトル終了処理
 void Scene_Title::end(void)
 {
     M_TitleBg.end();
+    M_TitleManager.end();
 }
 
 //
@@ -97,6 +103,7 @@ void Scene_Choice::init(void)
 {
     M_ChoiceBg.init();
     M_Stage_Select.init();
+    M_SelectManager.init();
 }
 
 // ステージ選択更新処理
@@ -104,6 +111,7 @@ void Scene_Choice::update(void)
 {
     M_ChoiceBg.update();
     M_Stage_Select.update();
+    M_SelectManager.update();
 }
 
 // ステージ選択描画処理
@@ -111,6 +119,7 @@ void Scene_Choice::draw(void)
 {
     M_ChoiceBg.draw();
     M_Stage_Select.draw();
+    M_SelectManager.draw();
 }
 
 // ステージ選択終了処理
@@ -118,6 +127,7 @@ void Scene_Choice::end(void)
 {
     M_ChoiceBg.end();
     M_Stage_Select.end();
+    M_SelectManager.end();
 }
 
 //
@@ -135,6 +145,7 @@ void Scene_Game::init(void)
     M_Bubble.init();
     M_MapData.init();
     M_WaterSource.init();
+    M_Goals.init();
     M_UI.init();
     M_GameManager.init();
 }
@@ -146,6 +157,7 @@ void Scene_Game::update(void)
     M_GameBg.update();
     M_Bubble.update();
     M_WaterSource.update();
+    M_Goals.update();
     M_UI.update();
     M_GameManager.update();
 }
@@ -157,6 +169,7 @@ void Scene_Game::draw(void)
     M_MapData.draw();
     M_Bubble.draw();
     M_WaterSource.draw();
+    M_Goals.draw();
     M_UI.draw();
     M_GameManager.draw();
 }
@@ -168,6 +181,7 @@ void Scene_Game::end(void)
     M_GameBg.end();
     M_Bubble.end();
     M_WaterSource.end();
+    M_Goals.end();
     M_UI.end();
     M_GameManager.end();
 }
@@ -230,21 +244,21 @@ void Usable::MainLoop(void)
         case State_Title:
             M_SceneTitle.update();         // タイトル更新処理
             M_SceneTitle.draw();           // タイトル描画処理
-            M_System.drawDebugString(); // debug
+            //M_System.drawDebugString(); // debug
             break;
         case State_Choice:
             M_SceneChoice.update();        // ステージ選択更新処理
             M_SceneChoice.draw();          // ステージ選択描画処理
-            M_System.drawDebugString(); // debug
+            //M_System.drawDebugString(); // debug
             break;
         case State_Game:
             M_SceneGame.update();          // ゲーム更新処理
             M_SceneGame.draw();            // ゲーム描画処理
-            M_System.drawDebugString(); // debug
+            //M_System.drawDebugString(); // debug
             break;
         }
 
-        M_System.inputDebugKey();   // debug
+        //M_System.inputDebugKey();   // debug
         ScreenFlip();   // VSYNCを待つ
 
         // ESCキーだけは常に監視。押されたら直ちに終了

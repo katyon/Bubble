@@ -13,6 +13,7 @@ public:
     virtual void end(void) = 0;
 protected:
     vec2f   pos;
+    vec2f   src;
     int     handle = 0;
 };
 
@@ -24,6 +25,9 @@ public:
     void update(void);
     void draw(void);
     void end(void);
+private:
+    int string;
+    int num;
 };
 
 #define M_ChoiceBg Choice_Bg::getInstance()
