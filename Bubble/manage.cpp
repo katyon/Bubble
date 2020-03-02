@@ -69,7 +69,7 @@ void GameManager::update(void)
 {
     if (clear == true)
     {
-
+        M_System.changeSceneStateInit(State_Title);
     }
 }
 

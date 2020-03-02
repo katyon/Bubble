@@ -137,21 +137,21 @@ void Goals::update(void)
 
 void Goals::draw(void)
 {
-    switch (maxNum)
-    {
-    case 1:
-        DrawRectExtendGraphF(I_GoalsObj[0].pos.x, I_GoalsObj[0].pos.y, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].src.x, I_GoalsObj[0].src.y, 300, 300, handle, true);
-        break;
-    case 2:
-        DrawRectExtendGraphF(I_GoalsObj[0].pos.x, I_GoalsObj[0].pos.y, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].src.x, I_GoalsObj[0].src.y, 300, 300, handle, true);
-        DrawRectExtendGraphF(I_GoalsObj[1].pos.x, I_GoalsObj[1].pos.y, I_GoalsObj[1].rel_pos.x, I_GoalsObj[1].rel_pos.x, I_GoalsObj[1].src.x, I_GoalsObj[1].src.y, 300, 300, handle, true);
-        break;
-    case 3:
-        DrawRectExtendGraphF(I_GoalsObj[0].pos.x, I_GoalsObj[0].pos.y, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].src.x, I_GoalsObj[0].src.y, 300, 300, handle, true);
-        DrawRectExtendGraphF(I_GoalsObj[1].pos.x, I_GoalsObj[1].pos.y, I_GoalsObj[1].rel_pos.x, I_GoalsObj[1].rel_pos.x, I_GoalsObj[1].src.x, I_GoalsObj[1].src.y, 300, 300, handle, true);
-        DrawRectExtendGraphF(I_GoalsObj[2].pos.x, I_GoalsObj[2].pos.y, I_GoalsObj[2].rel_pos.x, I_GoalsObj[2].rel_pos.x, I_GoalsObj[2].src.x, I_GoalsObj[2].src.y, 300, 300, handle, true);
-        break;
-    }
+    //switch (maxNum)
+    //{
+    //case 1:
+    //    DrawRectExtendGraphF(I_GoalsObj[0].pos.x, I_GoalsObj[0].pos.y, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].src.x, I_GoalsObj[0].src.y, 300, 300, handle, true);
+    //    break;
+    //case 2:
+    //    DrawRectExtendGraphF(I_GoalsObj[0].pos.x, I_GoalsObj[0].pos.y, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].src.x, I_GoalsObj[0].src.y, 300, 300, handle, true);
+    //    DrawRectExtendGraphF(I_GoalsObj[1].pos.x, I_GoalsObj[1].pos.y, I_GoalsObj[1].rel_pos.x, I_GoalsObj[1].rel_pos.x, I_GoalsObj[1].src.x, I_GoalsObj[1].src.y, 300, 300, handle, true);
+    //    break;
+    //case 3:
+    //    DrawRectExtendGraphF(I_GoalsObj[0].pos.x, I_GoalsObj[0].pos.y, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].src.x, I_GoalsObj[0].src.y, 300, 300, handle, true);
+    //    DrawRectExtendGraphF(I_GoalsObj[1].pos.x, I_GoalsObj[1].pos.y, I_GoalsObj[1].rel_pos.x, I_GoalsObj[1].rel_pos.x, I_GoalsObj[1].src.x, I_GoalsObj[1].src.y, 300, 300, handle, true);
+    //    DrawRectExtendGraphF(I_GoalsObj[2].pos.x, I_GoalsObj[2].pos.y, I_GoalsObj[2].rel_pos.x, I_GoalsObj[2].rel_pos.x, I_GoalsObj[2].src.x, I_GoalsObj[2].src.y, 300, 300, handle, true);
+    //    break;
+    //}
 }
 
 void Goals::end(void)

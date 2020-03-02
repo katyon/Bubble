@@ -21,6 +21,7 @@ void MapData::init(void)
     width = 130;
     height = 130;
     handle = LoadGraph("Data\\Images\\Sprite\\MapChip.png");
+    goals = LoadGraph("Data\\Images\\Sprite\\goals.png");
     M_MapData.setMapData();
     M_MapData.spawnBubble();
 }
@@ -41,23 +42,31 @@ void MapData::draw(void)
     {
         for (int Hor = 0; Hor < MAPCHIP_H_MAX; Hor++)
         {
-            switch (mapData[Ver][Hor])
+            if (mapData[Ver][Hor] == GoalSpawner)
             {
-            case Void:          src.set(130 * 0, 130 * 0);  break;
-            case LFloor:        src.set(130 * 1, 130 * 0);  break;
-            case Floor:         src.set(130 * 2, 130 * 0);  break;
-            case RFloor:        src.set(130 * 3, 130 * 0);  break;
-            case Wall:          src.set(130 * 0, 130 * 1);  break;
-            case Lift:          src.set(130 * 1, 130 * 1);  break;
-            case Needle:        src.set(130 * 2, 130 * 1);  break;
-            case Splitter:      src.set(130 * 3, 130 * 1);  break;
-            case BubbleSpawner: src.set(130 * 0, 130 * 2);  break;
-            case GoalSpawner:   src.set(130 * 1, 130 * 2);  break;
-            case StartSource:   src.set(130 * 2, 130 * 2);  break;
-            case EndSource:     src.set(130 * 3, 130 * 2);  break;
-            default: src.set(0, 0);  break;
+                src.set(600, 0);
+                DrawRectExtendGraph(MAPCHIP_SIZE * Hor, MAPCHIP_SIZE * Ver, MAPCHIP_SIZE * Hor + MAPCHIP_SIZE, MAPCHIP_SIZE * Ver + MAPCHIP_SIZE, src.x, src.y, 300, 300, goals, true);
             }
-            DrawRectExtendGraph(MAPCHIP_SIZE * Hor, MAPCHIP_SIZE * Ver, MAPCHIP_SIZE * Hor + MAPCHIP_SIZE, MAPCHIP_SIZE * Ver + MAPCHIP_SIZE, src.x, src.y, width, height, handle, true);
+            else
+            {
+                switch (mapData[Ver][Hor])
+                {
+                case Void:          src.set(130 * 0, 130 * 0);  break;
+                case LFloor:        src.set(130 * 1, 130 * 0);  break;
+                case Floor:         src.set(130 * 2, 130 * 0);  break;
+                case RFloor:        src.set(130 * 3, 130 * 0);  break;
+                case Wall:          src.set(130 * 0, 130 * 1);  break;
+                case Lift:          src.set(130 * 1, 130 * 1);  break;
+                case Needle:        src.set(130 * 2, 130 * 1);  break;
+                case Splitter:      src.set(130 * 3, 130 * 1);  break;
+                case BubbleSpawner: src.set(130 * 0, 130 * 2);  break;
+                    //case GoalSpawner:   src.set(130 * 1, 130 * 2);  break;
+                case StartSource:   src.set(130 * 2, 130 * 2);  break;
+                case EndSource:     src.set(130 * 3, 130 * 2);  break;
+                default: src.set(0, 0);  break;
+                }
+                DrawRectExtendGraph(MAPCHIP_SIZE * Hor, MAPCHIP_SIZE * Ver, MAPCHIP_SIZE * Hor + MAPCHIP_SIZE, MAPCHIP_SIZE * Ver + MAPCHIP_SIZE, src.x, src.y, width, height, handle, true);
+            }
         }
     }
 }

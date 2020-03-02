@@ -40,5 +40,6 @@ public:
 
     bool change = false;
     bool clear = false;
+    int handle;
 private:
 };

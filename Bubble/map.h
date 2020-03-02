@@ -26,7 +26,8 @@ public:
     void spawnBubble(void);
     void collMapChipWithBubble(PlBubbleObj* obj);
 
-    int mapData[MAPCHIP_V_MAX][MAPCHIP_H_MAX];
+    int mapData[MAPCHIP_V_MAX][MAPCHIP_H_MAX] = { 0 };
 
 private:
+    int goals;
 };
