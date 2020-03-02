@@ -3,7 +3,7 @@
 #include "input.h"
 #include "stage_select.h"
 
-#define STAGE_MAX 6
+#define STAGE_MAX 4
 void Stage_Select::init()
 {
     handle = LoadGraph("Data\\Images\\Sprite\\bubble_number.png");
@@ -51,11 +51,11 @@ void Stage_Select::draw()
     if (bubble_effect == true)
     {
         DrawRectRotaGraph2F(pos.x + 0, pos.y + sin + 50, 300 * 0, 0, 300, 300, 150, 150, 1 * magnification - size, 0, handle, true, 0, 0);
-        DrawRectRotaGraph2F(pos.x + 300, pos.y + sin3 + 630, 300 * 1, 0, 300, 300, 150, 150, 1 * magnification - size, 0, handle, true, 0, 0);
-        DrawRectRotaGraph2F(pos.x + 600, pos.y + sin2 + 50, 300 * 2, 0, 300, 300, 150, 150, 1 * magnification - size, 0, handle, true, 0, 0);
-        DrawRectRotaGraph2F(pos.x + 900, pos.y + sin2 + 630, 300 * 3, 0, 300, 300, 150, 150, 1 * magnification - size, 0, handle, true, 0, 0);
-        DrawRectRotaGraph2F(pos.x + 1200, pos.y + sin + 50, 300 * 4, 0, 300, 300, 150, 150, 1 * magnification - size, 0, handle, true, 0, 0);
-        DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin3 + 630, 300 * 5, 0, 300, 300, 150, 150, 1 * magnification - size, 0, handle, true, 0, 0);
+        DrawRectRotaGraph2F(pos.x + 500, pos.y + sin3 + 630, 300 * 1, 0, 300, 300, 150, 150, 1 * magnification - size, 0, handle, true, 0, 0);
+        DrawRectRotaGraph2F(pos.x + 1000, pos.y + sin2 + 50, 300 * 2, 0, 300, 300, 150, 150, 1 * magnification - size, 0, handle, true, 0, 0);
+        DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin2 + 630, 300 * 3, 0, 300, 300, 150, 150, 1 * magnification - size, 0, handle, true, 0, 0);
+        //DrawRectRotaGraph2F(pos.x + 1200, pos.y + sin + 50, 300 * 4, 0, 300, 300, 150, 150, 1 * magnification - size, 0, handle, true, 0, 0);
+        //DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin3 + 630, 300 * 5, 0, 300, 300, 150, 150, 1 * magnification - size, 0, handle, true, 0, 0);
     }
 
     else
@@ -64,56 +64,56 @@ void Stage_Select::draw()
         {
         case 1:
             DrawRectRotaGraph2F(pos.x + 0, pos.y + sin + 50, 300 * 0, 0, 300, 300, 150, 150, 1 * magnification, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 300, pos.y + sin3 + 630, 300 * 1, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 600, pos.y + sin2 + 50, 300 * 2, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 900, pos.y + sin2 + 630, 300 * 3, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 1200, pos.y + sin + 50, 300 * 4, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin3 + 630, 300 * 5, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 500, pos.y + sin3 + 630, 300 * 1, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 1000, pos.y + sin2 + 50, 300 * 2, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin2 + 630, 300 * 3, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+           // DrawRectRotaGraph2F(pos.x + 1200, pos.y + sin + 50, 300 * 4, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+           // DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin3 + 630, 300 * 5, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
             break;
 
         case 2:
             DrawRectRotaGraph2F(pos.x + 0, pos.y + sin + 50, 300 * 0, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 300, pos.y + sin3 + 630, 300 * 1, 0, 300, 300, 150, 150, 1 * magnification, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 600, pos.y + sin2 + 50, 300 * 2, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 900, pos.y + sin2 + 630, 300 * 3, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 1200, pos.y + sin + 50, 300 * 4, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin3 + 630, 300 * 5, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 500, pos.y + sin3 + 630, 300 * 1, 0, 300, 300, 150, 150, 1 * magnification, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 1000, pos.y + sin2 + 50, 300 * 2, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin2 + 630, 300 * 3, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+           // DrawRectRotaGraph2F(pos.x + 1200, pos.y + sin + 50, 300 * 4, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+           // DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin3 + 630, 300 * 5, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
             break;
 
         case 3:
             DrawRectRotaGraph2F(pos.x + 0, pos.y + sin + 50, 300 * 0, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 300, pos.y + sin3 + 630, 300 * 1, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 600, pos.y + sin2 + 50, 300 * 2, 0, 300, 300, 150, 150, 1 * magnification, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 900, pos.y + sin2 + 630, 300 * 3, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 1200, pos.y + sin + 50, 300 * 4, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin3 + 630, 300 * 5, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 500, pos.y + sin3 + 630, 300 * 1, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 1000, pos.y + sin2 + 50, 300 * 2, 0, 300, 300, 150, 150, 1 * magnification, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin2 + 630, 300 * 3, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+           // DrawRectRotaGraph2F(pos.x + 1200, pos.y + sin + 50, 300 * 4, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+           // DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin3 + 630, 300 * 5, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
             break;
 
         case 4:
             DrawRectRotaGraph2F(pos.x + 0, pos.y + sin + 50, 300 * 0, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 300, pos.y + sin3 + 630, 300 * 1, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 600, pos.y + sin2 + 50, 300 * 2, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 900, pos.y + sin2 + 630, 300 * 3, 0, 300, 300, 150, 150, 1 * magnification, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 1200, pos.y + sin + 50, 300 * 4, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin3 + 630, 300 * 5, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 500, pos.y + sin3 + 630, 300 * 1, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 1000, pos.y + sin2 + 50, 300 * 2, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin2 + 630, 300 * 3, 0, 300, 300, 150, 150, 1 * magnification, 0, handle, true, 0, 0);
+          //  DrawRectRotaGraph2F(pos.x + 1200, pos.y + sin + 50, 300 * 4, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+          //  DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin3 + 630, 300 * 5, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
             break;
 
         case 5:
             DrawRectRotaGraph2F(pos.x + 0, pos.y + sin + 50, 300 * 0, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 300, pos.y + sin3 + 630, 300 * 1, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 600, pos.y + sin2 + 50, 300 * 2, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 900, pos.y + sin2 + 630, 300 * 3, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 1200, pos.y + sin + 50, 300 * 4, 0, 300, 300, 150, 150, 1 * magnification, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin3 + 630, 300 * 5, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 500, pos.y + sin3 + 630, 300 * 1, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 1000, pos.y + sin2 + 50, 300 * 2, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin2 + 630, 300 * 3, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+          //  DrawRectRotaGraph2F(pos.x + 1200, pos.y + sin + 50, 300 * 4, 0, 300, 300, 150, 150, 1 * magnification, 0, handle, true, 0, 0);
+          //  DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin3 + 630, 300 * 5, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
             break;
 
         case 6:
             DrawRectRotaGraph2F(pos.x + 0, pos.y + sin + 50, 300 * 0, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 300, pos.y + sin3 + 630, 300 * 1, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 600, pos.y + sin2 + 50, 300 * 2, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 900, pos.y + sin2 + 630, 300 * 3, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 1200, pos.y + sin + 50, 300 * 4, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
-            DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin3 + 630, 300 * 5, 0, 300, 300, 150, 150, 1 * magnification, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 500, pos.y + sin3 + 630, 300 * 1, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 1000, pos.y + sin2 + 50, 300 * 2, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+            DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin2 + 630, 300 * 3, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+         //   DrawRectRotaGraph2F(pos.x + 1200, pos.y + sin + 50, 300 * 4, 0, 300, 300, 150, 150, 0.5, 0, handle, true, 0, 0);
+         //   DrawRectRotaGraph2F(pos.x + 1500, pos.y + sin3 + 630, 300 * 5, 0, 300, 300, 150, 150, 1 * magnification, 0, handle, true, 0, 0);
             break;
     }
     }
