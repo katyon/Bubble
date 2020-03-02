@@ -3,9 +3,9 @@
 #include "vec2.h"
 // íËêî ----------------------------------------------------------------
 #define PL_BUBBLE_MAX      (64)
-#define BUBBLE_ACCEL    (0.5f)
-#define BUBBLE_DECEL    (0.2f)
-#define BUBBLE_SPEED_MAX    (10.0f)
+#define BUBBLE_ACCEL    (0.15f)
+#define BUBBLE_DECEL    (0.1f)
+#define BUBBLE_SPEED_MAX    (5.0f)
 #define BUOYANCY        (0.5f)
 
 // ÉNÉâÉX --------------------------------------------------------------

@@ -31,18 +31,28 @@ void WaterSource::init(void)
     {
     case 1:
         maxNum = 3;
-        I_WatereObj[0].init(&I_WatereObj[0], 0, 300);
-        I_WatereObj[1].init(&I_WatereObj[1], 400, 600);
-        I_WatereObj[2].init(&I_WatereObj[2], 800, 1080);
+        I_WatereObj[0].init(&I_WatereObj[0], 128, 384);
+        I_WatereObj[1].init(&I_WatereObj[1], 448, 640);
+        I_WatereObj[2].init(&I_WatereObj[2], 704, 960);
         break;
     case 2:
-        maxNum = 3;
+        maxNum = 4;
+        I_WatereObj[0].init(&I_WatereObj[0], 64, 256);
+        I_WatereObj[1].init(&I_WatereObj[1], 320, 512);
+        I_WatereObj[2].init(&I_WatereObj[2], 576, 768);
+        I_WatereObj[3].init(&I_WatereObj[3], 832, 1024);
         break;
     case 3:
         maxNum = 3;
+        I_WatereObj[0].init(&I_WatereObj[0], 128, 384);
+        I_WatereObj[1].init(&I_WatereObj[1], 448, 640);
+        I_WatereObj[2].init(&I_WatereObj[2], 704, 1024);
         break;
     case 4:
         maxNum = 3;
+        I_WatereObj[0].init(&I_WatereObj[0], 64, 320);
+        I_WatereObj[1].init(&I_WatereObj[1], 384, 576);
+        I_WatereObj[2].init(&I_WatereObj[2], 832, 1024);
         break;
     case 5:
         maxNum = 3;
