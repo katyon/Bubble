@@ -13,6 +13,8 @@
 #include "UI.h"
 #include "stage_select.h"
 #include "waterSource.h"
+#include "water_current.h"
+#include "scene_migration.h"
 
 //////////////////////////////////////////////////////////////////////////
 //	各ゲームで使用するクラスインスタンスやグローバル変数はここに記述
@@ -21,6 +23,7 @@
 PlBubbleObj I_PlBubbleObj[PL_BUBBLE_MAX];
 WaterObj    I_WatereObj[SOURCE_MAX];
 GoalsObj    I_GoalsObj[GOALS_MAX];
+//Water_Current_Obj I_Water_Current_Obj[EFFECT_BUBBLE_MAX];
 
 //
 // 定義ここまで
@@ -67,6 +70,7 @@ void Scene_Title::init(void)
 {
     M_TitleBg.init();
     M_TitleManager.init();
+    M_Scene_Migration.init();
 }
 
 // タイトル更新処理
@@ -74,6 +78,7 @@ void Scene_Title::update(void)
 {
     M_TitleBg.update();
     M_TitleManager.update();
+    M_Scene_Migration.update0();
 }
 
 // タイトル描画処理
@@ -81,6 +86,7 @@ void Scene_Title::draw(void)
 {
     M_TitleBg.draw();
     M_TitleManager.draw();
+    M_Scene_Migration.draw();
 }
 
 // タイトル終了処理
@@ -88,6 +94,7 @@ void Scene_Title::end(void)
 {
     M_TitleBg.end();
     M_TitleManager.end();
+    M_Scene_Migration.end();
 }
 
 //
@@ -142,48 +149,56 @@ void Scene_Choice::end(void)
 void Scene_Game::init(void)
 {
     M_GameBg.init();
+    M_Water_Current.init();
     M_Bubble.init();
     M_MapData.init();
     M_WaterSource.init();
     M_Goals.init();
     //M_UI.init();
     M_GameManager.init();
+    M_Scene_Migration.init();
 }
 
 // ゲーム更新処理
 void Scene_Game::update(void)
 {
     M_MapData.update();
+    M_Water_Current.update();
     M_GameBg.update();
     M_Bubble.update();
     M_WaterSource.update();
     M_Goals.update();
    // M_UI.update();
     M_GameManager.update();
+    M_Scene_Migration.update1();
 }
 
 // ゲーム描画処理
 void Scene_Game::draw(void)
 {
     M_GameBg.draw();
+    M_Water_Current.draw();
     M_MapData.draw();
     M_Bubble.draw();
     M_WaterSource.draw();
     M_Goals.draw();
     //M_UI.draw();
     M_GameManager.draw();
+    M_Scene_Migration.draw();
 }
 
 // ゲーム終了処理
 void Scene_Game::end(void)
 {
     M_MapData.end();
+    M_Water_Current.end();
     M_GameBg.end();
     M_Bubble.end();
     M_WaterSource.end();
     M_Goals.end();
     //M_UI.end();
     M_GameManager.end();
+    M_Scene_Migration.end();
 }
 
 //
@@ -212,6 +227,7 @@ void Usable::AfterInit(void)
     Input::GetInstance()->Init();
 
     sceneState = State_Title;
+    //sceneState = State_Editor;
     M_SceneTitle.init();
 }
 

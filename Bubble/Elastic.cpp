@@ -1,5 +1,6 @@
 #include "common.h"
 #include "Elastic.h"
+#include <math.h>
 
 float Elastic::easeIn(float t, float b, float c, float d) {
 	if (t == 0) return b;  if ((t /= d) == 1) return b + c;

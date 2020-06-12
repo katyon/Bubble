@@ -158,6 +158,8 @@
   <ItemGroup>
     <ClCompile Include="bg.cpp" />
     <ClCompile Include="bubble.cpp" />
+    <ClCompile Include="Quint.cpp" />
+    <ClCompile Include="water_current.cpp" />
     <ClCompile Include="Elastic.cpp" />
     <ClCompile Include="editor.cpp" />
     <ClCompile Include="file.cpp" />
@@ -166,6 +168,7 @@
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
+    <ClCompile Include="scene_migration.cpp" />
     <ClCompile Include="stage_select.cpp" />
     <ClCompile Include="system.cpp" />
     <ClCompile Include="UI.cpp" />
@@ -176,6 +179,8 @@
     <ClInclude Include="bubble.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="DxLibFile\DxLib.h" />
+    <ClInclude Include="Quint.h" />
+    <ClInclude Include="water_current.h" />
     <ClInclude Include="Elastic.h" />
     <ClInclude Include="editor.h" />
     <ClInclude Include="file.h" />
@@ -184,6 +189,7 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="map.h" />
+    <ClInclude Include="scene_migration.h" />
     <ClInclude Include="singleton.h" />
     <ClInclude Include="stage_select.h" />
     <ClInclude Include="system.h" />
