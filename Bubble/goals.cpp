@@ -5,6 +5,7 @@
 #include "input.h"
 #include "goals.h"
 #include "manage.h"
+#include "map.h"
 #include "stage_select.h"
 #include "system.h"
 
@@ -13,11 +14,11 @@ extern PlBubbleObj I_PlBubbleObj[PL_BUBBLE_MAX];
 extern GoalsObj    I_GoalsObj[GOALS_MAX];
 
 // ŠÖ” ----------------------------------------------------------------------------------------
-void GoalsObj::init(GoalsObj* obj, float posX, float posY, int Num)
+void GoalsObj::init(GoalsObj* obj, float posX, float posY, int rateX, int rateY, int Num)
 {
     obj->pos.set(posX, posY);
+    obj->rel_pos.set(posX + (MAPCHIP_SIZE * rateX), posY + (MAPCHIP_SIZE * rateY));
     obj->num = Num;
-    obj->rel_pos.set(posX + 32, posY + 32);
     obj->src.set(0, 0);
     obj->exist = false;
     obj->clear = false;
@@ -27,29 +28,31 @@ void Goals::init(void)
 {
     for (int i = 0; i < GOALS_MAX; i++)
     {
-        I_GoalsObj[i].init(&I_GoalsObj[i], 0, 0, 0);
+        I_GoalsObj[i].init(&I_GoalsObj[i], 0, 0, 0, 0, 0);
     }
     switch (M_Stage_Select.select)
     {
     case 1:
         maxNum = 2;
-        I_GoalsObj[0].init(&I_GoalsObj[0], 10 * 64, 64 * 1, 4);
-        I_GoalsObj[1].init(&I_GoalsObj[1], 16 * 64, 64 ,3);
+        //I_GoalsObj[0].init(&I_GoalsObj[0], 0,0, 0);
+        //I_GoalsObj[1].init(&I_GoalsObj[1], 46 * 64, 64 ,0);
+        I_GoalsObj[0].init(&I_GoalsObj[0], 8 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 0);
+        I_GoalsObj[1].init(&I_GoalsObj[1], 16 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 0);
         break;
     case 2:
         maxNum = 2;
-        I_GoalsObj[0].init(&I_GoalsObj[0], 2 * 64, 64 * 1, 6);
-        I_GoalsObj[1].init(&I_GoalsObj[1], 26 * 64, 64, 5);
+        I_GoalsObj[0].init(&I_GoalsObj[0], 10 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 0);
+        I_GoalsObj[1].init(&I_GoalsObj[1], 16 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 0);
         break;
     case 3:
         maxNum = 1;
-        I_GoalsObj[0].init(&I_GoalsObj[0], 24 * 64, 64 * 1, 12);
+        I_GoalsObj[0].init(&I_GoalsObj[0], 10 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 0);
         break;
     case 4:
         maxNum = 3;
-        I_GoalsObj[0].init(&I_GoalsObj[0], 6 * 64, 64 * 1, 3);
-        I_GoalsObj[1].init(&I_GoalsObj[1], 14 * 64, 64, 3);
-        I_GoalsObj[2].init(&I_GoalsObj[0], 24 * 64, 64 * 1, 4);
+        I_GoalsObj[0].init(&I_GoalsObj[0], 10 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 0);
+        I_GoalsObj[1].init(&I_GoalsObj[1], 16 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 0);
+        I_GoalsObj[2].init(&I_GoalsObj[1], 16 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 0);
         break;
     case 5:
         maxNum = 3;
@@ -57,6 +60,26 @@ void Goals::init(void)
     default:
         maxNum = 1;
         break;
+    }
+    for (int i = 0; i < GOALS_MAX; ++i)
+    {
+        switch (I_GoalsObj[i].num)
+        {
+        case 1:
+            I_GoalsObj[i].src.set(0, 0);
+            break;
+        case 2:
+            I_GoalsObj[i].src.set(300, 0);
+            break;
+        case 3:
+            I_GoalsObj[i].src.set(600, 0);
+            break;
+        case 4:
+            I_GoalsObj[i].src.set(900, 0);
+            break;
+        default:
+            break;
+        }
     }
     for (int i = 0; i < maxNum; i++)
     {
@@ -67,49 +90,34 @@ void Goals::init(void)
 
 void Goals::update(void)
 {
-    switch (I_GoalsObj[0].num)
-    {
-    case 1:
-        I_GoalsObj[0].src.set(0, 0);
-        break;
-    case 2:
-        I_GoalsObj[0].src.set(300, 0);
-        break;
-    case 3:
-        I_GoalsObj[0].src.set(600, 0);
-        break;
-    default:
-        break;
-    }
-    switch (I_GoalsObj[1].num)
-    {
-    case 1:
-        I_GoalsObj[1].src.set(0, 0);
-        break;
-    case 2:
-        I_GoalsObj[1].src.set(300, 0);
-        break;
-    case 3:
-        I_GoalsObj[1].src.set(600, 0);
-        break;
-    default:
-        break;
-    }
-    switch (I_GoalsObj[2].num)
-    {
-    case 1:
-        I_GoalsObj[2].src.set(0, 0);
-        break;
-    case 2:
-        I_GoalsObj[2].src.set(300, 0);
-        break;
-    case 3:
-        I_GoalsObj[2].src.set(600, 0);
-        break;
-    default:
-        break;
-    }
-
+    //switch (I_GoalsObj[1].num)
+    //{
+    //case 1:
+    //    I_GoalsObj[1].src.set(0, 0);
+    //    break;
+    //case 2:
+    //    I_GoalsObj[1].src.set(300, 0);
+    //    break;
+    //case 3:
+    //    I_GoalsObj[1].src.set(600, 0);
+    //    break;
+    //default:
+    //    break;
+    //}
+    //switch (I_GoalsObj[2].num)
+    //{
+    //case 1:
+    //    I_GoalsObj[2].src.set(0, 0);
+    //    break;
+    //case 2:
+    //    I_GoalsObj[2].src.set(300, 0);
+    //    break;
+    //case 3:
+    //    I_GoalsObj[2].src.set(600, 0);
+    //    break;
+    //default:
+    //    break;
+    //}
     for (int i = 0; i < PL_BUBBLE_MAX; i++)
     {
         if (I_PlBubbleObj[i].exist == false) continue;
@@ -125,16 +133,16 @@ void Goals::update(void)
     switch (maxNum)
     {
     case 1:
-        if (I_GoalsObj[0].clear) M_GameManager.clear = true;
+        if (I_GoalsObj[0].clear == true) M_GameManager.clear = true;
         break;
     case 2:
-        if (I_GoalsObj[0].clear) M_GameManager.clear = true;
-        if (I_GoalsObj[1].clear) M_GameManager.clear = true;
+        if (I_GoalsObj[0].clear == true &&
+            I_GoalsObj[1].clear == true) M_GameManager.clear = true;
         break;
     case 3:
-        if (I_GoalsObj[0].clear) M_GameManager.clear = true;
-        if (I_GoalsObj[1].clear) M_GameManager.clear = true;
-        if (I_GoalsObj[2].clear) M_GameManager.clear = true;
+        if (I_GoalsObj[0].clear == true &&
+            I_GoalsObj[1].clear == true &&
+            I_GoalsObj[2].clear == true) M_GameManager.clear = true;
         break;
     default:
         break;
@@ -143,21 +151,20 @@ void Goals::update(void)
 
 void Goals::draw(void)
 {
-    //switch (maxNum)
-    //{
-    //case 1:
-    //    DrawRectExtendGraphF(I_GoalsObj[0].pos.x, I_GoalsObj[0].pos.y, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].src.x, I_GoalsObj[0].src.y, 300, 300, handle, true);
-    //    break;
-    //case 2:
-    //    DrawRectExtendGraphF(I_GoalsObj[0].pos.x, I_GoalsObj[0].pos.y, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].src.x, I_GoalsObj[0].src.y, 300, 300, handle, true);
-    //    DrawRectExtendGraphF(I_GoalsObj[1].pos.x, I_GoalsObj[1].pos.y, I_GoalsObj[1].rel_pos.x, I_GoalsObj[1].rel_pos.x, I_GoalsObj[1].src.x, I_GoalsObj[1].src.y, 300, 300, handle, true);
-    //    break;
-    //case 3:
-    //    DrawRectExtendGraphF(I_GoalsObj[0].pos.x, I_GoalsObj[0].pos.y, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].rel_pos.x, I_GoalsObj[0].src.x, I_GoalsObj[0].src.y, 300, 300, handle, true);
-    //    DrawRectExtendGraphF(I_GoalsObj[1].pos.x, I_GoalsObj[1].pos.y, I_GoalsObj[1].rel_pos.x, I_GoalsObj[1].rel_pos.x, I_GoalsObj[1].src.x, I_GoalsObj[1].src.y, 300, 300, handle, true);
-    //    DrawRectExtendGraphF(I_GoalsObj[2].pos.x, I_GoalsObj[2].pos.y, I_GoalsObj[2].rel_pos.x, I_GoalsObj[2].rel_pos.x, I_GoalsObj[2].src.x, I_GoalsObj[2].src.y, 300, 300, handle, true);
-    //    break;
-    //}
+    for (int i = 0; i < GOALS_MAX; i++)
+    {
+        if (I_GoalsObj[i].exist == false) continue;
+        DrawRectExtendGraph(I_GoalsObj[i].pos.x, I_GoalsObj[i].pos.y, I_GoalsObj[i].rel_pos.x, I_GoalsObj[i].rel_pos.y, I_GoalsObj[i].src.x, I_GoalsObj[i].src.y, 300, 300, handle, true);
+
+        if (I_GoalsObj[i].clear == true)
+        {
+            for (int j = 0; j < 7; ++j)
+            {
+                DrawCircle(I_GoalsObj[i].pos.x + (I_GoalsObj[i].rel_pos.x - I_GoalsObj[i].pos.x) / 2,
+                    I_GoalsObj[i].pos.y + (I_GoalsObj[i].rel_pos.y - I_GoalsObj[i].pos.y) / 2, 32 - j, GetColor(0, 200, 0), false);
+            }
+        }
+    }
 }
 
 void Goals::end(void)

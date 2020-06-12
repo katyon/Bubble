@@ -3,6 +3,7 @@
 
 #include "common.h"
 #include "file.h"
+#include "goals.h"
 #include "input.h"
 #include "main.h"
 #include "manage.h"
@@ -11,6 +12,7 @@
 
 // extern宣言,static初期化 ----------------------------------------------------------------------
 extern PlBubbleObj I_PlBubbleObj[PL_BUBBLE_MAX];
+extern GoalsObj    I_GoalsObj[GOALS_MAX];
 
 // 関数 ----------------------------------------------------------------------------------------
 void MapData::init(void)
@@ -33,6 +35,7 @@ void MapData::update(void)
         if (I_PlBubbleObj[i].exist == false) continue;
 
         M_MapData.collMapChipWithBubble(&I_PlBubbleObj[i]);
+        M_MapData.collGoalsWithBubble(&I_PlBubbleObj[i]);
     }
 }
 
@@ -42,12 +45,12 @@ void MapData::draw(void)
     {
         for (int Hor = 0; Hor < MAPCHIP_H_MAX; Hor++)
         {
-            if (mapData[Ver][Hor] == GoalSpawner)
-            {
-                src.set(600, 0);
-                DrawRectExtendGraph(MAPCHIP_SIZE * Hor, MAPCHIP_SIZE * Ver, MAPCHIP_SIZE * Hor + MAPCHIP_SIZE, MAPCHIP_SIZE * Ver + MAPCHIP_SIZE, src.x, src.y, 300, 300, goals, true);
-            }
-            else
+            //if (mapData[Ver][Hor] == GoalSpawner)
+            //{
+            //    src.set(0, 0);
+            //    DrawRectExtendGraph(MAPCHIP_SIZE * Hor, MAPCHIP_SIZE * Ver, MAPCHIP_SIZE * Hor + MAPCHIP_SIZE, MAPCHIP_SIZE * Ver + MAPCHIP_SIZE, src.x, src.y, 300, 300, goals, true);
+            //}
+            //else
             {
                 switch (mapData[Ver][Hor])
                 {
@@ -233,9 +236,30 @@ void MapData::collMapChipWithBubble(PlBubbleObj* obj)
                     }
                     break;
                     // ゴール
-                case GoalSpawner:
-                    M_GameManager.clear = true;
-                    break;
+                //case GoalSpawner:
+                //    for (int i = 0; i < PL_BUBBLE_MAX; i++)
+                //    {
+                //        for (int j = 0; j < GOALS_MAX; j++)
+                //        {
+                //            if (I_PlBubbleObj[i].exist == true) continue;
+                //            if (I_PlBubbleObj[i].level > I_GoalsObj[j].num)
+                //                M_GameManager.clear = true;
+                //            break;
+                //        }
+                //    }
+                //    break;
+                //case SubGoal:
+                //    for (int i = 0; i < PL_BUBBLE_MAX; i++)
+                //    {
+                //        for (int j = 0; j < GOALS_MAX; j++)
+                //        {
+                //            if (I_PlBubbleObj[i].exist == true) continue;
+                //            if (I_PlBubbleObj[i].level > I_GoalsObj[j].num)
+                //                M_GameManager.clear = true;
+                //            break;
+                //        } 
+                //    }
+                //    break;
                 default:
                     break;
                 }
@@ -244,6 +268,43 @@ void MapData::collMapChipWithBubble(PlBubbleObj* obj)
             if (mapData[Ver][Hor] == StartSource)
             {
 
+            }
+        }
+    }
+}
+
+void MapData::collGoalsWithBubble(PlBubbleObj* obj)
+{
+    int goalLeft;
+    int goalRight;
+    int goalTop;
+    int goalBottom;
+    int bubbleCollLeft;
+    int bubbleCollRight;
+    int bubbleCollTop;
+    int bubbleCollBottom;
+
+    //泡当たり判定部4点座標
+    bubbleCollLeft = obj->pos.x;
+    bubbleCollRight = obj->pos.x + obj->radius * 2;
+    bubbleCollTop = obj->pos.y;
+    bubbleCollBottom = obj->pos.y + obj->radius * 2;
+    for (int i = 0; i < GOALS_MAX; i++)
+    {
+        if (I_GoalsObj[i].exist == false) continue;
+        if (I_GoalsObj[i].clear == true) continue;
+        //ゴール4点座標
+        goalLeft = I_GoalsObj[i].pos.x;
+        goalRight = I_GoalsObj[i].rel_pos.x;
+        goalTop = I_GoalsObj[i].pos.y;
+        goalBottom = I_GoalsObj[i].rel_pos.y;
+
+        if (goalLeft <= bubbleCollRight && bubbleCollLeft <= goalRight && goalTop <= bubbleCollBottom && bubbleCollTop <= goalBottom)
+        {
+            if (obj->level >= I_GoalsObj[i].num)
+            {
+                I_GoalsObj[i].clear = true;
+                obj->exist = false;
             }
         }
     }

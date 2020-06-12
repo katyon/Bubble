@@ -11,7 +11,8 @@ enum ChipData
 {
     Void, LFloor, Floor, RFloor,
     Wall, Lift, Needle, Splitter,
-    BubbleSpawner, GoalSpawner, StartSource, EndSource
+    BubbleSpawner, GoalSpawner, 
+    StartSource, EndSource, SubGoal
 };
 // ƒNƒ‰ƒX --------------------------------------------------------------
 #define M_MapData MapData::getInstance()
@@ -25,6 +26,7 @@ public:
     void setMapData(void);
     void spawnBubble(void);
     void collMapChipWithBubble(PlBubbleObj* obj);
+    void collGoalsWithBubble(PlBubbleObj* obj);
 
     int mapData[MAPCHIP_V_MAX][MAPCHIP_H_MAX] = { 0 };
 

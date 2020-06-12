@@ -8,7 +8,7 @@
 class GoalsObj
 {
 public:
-    void init(GoalsObj* obj, float posX, float posY, int Num);
+    void init(GoalsObj* obj, float posX, float posY, int rateX, int rateY, int Num);
 
     vec2f   pos;
     vec2f   rel_pos;
