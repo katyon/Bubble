@@ -27,6 +27,7 @@ public:
 
     bool change = false;
 private:
+    unsigned int cr = 0;
 };
 
 #define M_GameManager GameManager::getInstance()
@@ -40,6 +41,8 @@ public:
 
     bool change = false;
     bool clear = false;
+
     int handle;
 private:
+    unsigned int cr = 0;
 };

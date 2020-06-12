@@ -134,3 +134,13 @@ void Scene_Migration::end()
     DeleteGraph(handle0);
     DeleteGraph(handle1);
 }
+
+void Scene_Migration::setTimer(float time)
+{
+    timer = time;
+}
+
+float Scene_Migration::getTimer()
+{
+    return timer;
+}

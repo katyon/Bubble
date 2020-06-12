@@ -28,4 +28,7 @@ public:
     void update1(void);
     void draw(void);
     void end(void);
+
+    void setTimer(float time);
+    float getTimer(void);
 };

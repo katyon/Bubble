@@ -40,6 +40,16 @@ public:
     void end(void);
 };
 
+#define M_MigrationBg Migration_Bg::getInstance()
+class Migration_Bg :public Bg, public Singleton<Migration_Bg>
+{
+public:
+    void init(void);
+    void update(void);
+    void draw(void);
+    void end(void);
+};
+
 #define M_GameBg Game_Bg::getInstance()
 class Game_Bg :public Bg, public Singleton<Game_Bg>
 {

@@ -156,34 +156,49 @@ void Scene_Game::init(void)
     M_Goals.init();
     //M_UI.init();
     M_GameManager.init();
+    M_MigrationBg.init();
     M_Scene_Migration.init();
 }
 
 // ƒQ[ƒ€XVˆ—
 void Scene_Game::update(void)
 {
-    M_MapData.update();
-    M_Water_Current.update();
-    M_GameBg.update();
-    M_Bubble.update();
-    M_WaterSource.update();
-    M_Goals.update();
-   // M_UI.update();
-    M_GameManager.update();
+    if (M_Scene_Migration.getTimer() > 60)
+    {
+        M_MapData.update();
+        M_Water_Current.update();
+        M_GameBg.update();
+        M_Bubble.update();
+        M_WaterSource.update();
+        M_Goals.update();
+        // M_UI.update();
+        M_GameManager.update();
+    }
+    else
+    {
+        M_MigrationBg.update();
+    }
     M_Scene_Migration.update1();
 }
 
 // ƒQ[ƒ€•`‰æˆ—
 void Scene_Game::draw(void)
 {
-    M_GameBg.draw();
-    M_Water_Current.draw();
-    M_MapData.draw();
-    M_Bubble.draw();
-    M_WaterSource.draw();
-    M_Goals.draw();
-    //M_UI.draw();
-    M_GameManager.draw();
+    if (M_Scene_Migration.getTimer() > 60)
+    {
+        M_GameBg.draw();
+        M_Water_Current.draw();
+        M_MapData.draw();
+        M_Bubble.draw();
+        M_WaterSource.draw();
+        M_Goals.draw();
+        //M_UI.draw();
+        M_GameManager.draw();
+    }
+    else
+    {
+        M_MigrationBg.draw();
+    }
     M_Scene_Migration.draw();
 }
 
@@ -198,6 +213,7 @@ void Scene_Game::end(void)
     M_Goals.end();
     //M_UI.end();
     M_GameManager.end();
+    M_MigrationBg.end();
     M_Scene_Migration.end();
 }
 

@@ -63,9 +63,9 @@ void MapData::draw(void)
                 case Needle:        src.set(130 * 2, 130 * 1);  break;
                 case Splitter:      src.set(130 * 3, 130 * 1);  break;
                 case BubbleSpawner: src.set(130 * 0, 130 * 2);  break;
-                    //case GoalSpawner:   src.set(130 * 1, 130 * 2);  break;
-                case StartSource:   src.set(130 * 2, 130 * 2);  break;
-                case EndSource:     src.set(130 * 3, 130 * 2);  break;
+                //case GoalSpawner:   src.set(130 * 1, 130 * 2);  break;
+                //case StartSource:   src.set(130 * 2, 130 * 2);  break;
+                //case EndSource:     src.set(130 * 3, 130 * 2);  break;
                 default: src.set(0, 0);  break;
                 }
                 DrawRectExtendGraph(MAPCHIP_SIZE * Hor, MAPCHIP_SIZE * Ver, MAPCHIP_SIZE * Hor + MAPCHIP_SIZE, MAPCHIP_SIZE * Ver + MAPCHIP_SIZE, src.x, src.y, width, height, handle, true);

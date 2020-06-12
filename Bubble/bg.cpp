@@ -5,6 +5,7 @@
 #include "input.h"
 #include "main.h"
 #include "bg.h"
+#include "stage_select.h"
 
 // ä÷êî ----------------------------------------------------------------------------------------
 // Title
@@ -63,6 +64,44 @@ void Choice_Bg::draw(void)
 }
 
 void Choice_Bg::end(void)
+{
+    DeleteGraph(handle);
+}
+
+// Migration
+void Migration_Bg::init(void)
+{
+    switch (M_Stage_Select.select)
+    {
+    case 1:
+        handle = LoadGraph("Data\\Images\\Bg\\Select1.png");
+        break;
+    case 2:
+        handle = LoadGraph("Data\\Images\\Bg\\Select2.png");
+        break;
+    case 3:
+        handle = LoadGraph("Data\\Images\\Bg\\Select3.png");
+        break;
+    case 4:
+        handle = LoadGraph("Data\\Images\\Bg\\Select4.png");
+        break;
+    default:
+        handle = LoadGraph("Data\\Images\\Bg\\Select1.png");
+        break;
+    }
+}
+
+void Migration_Bg::update(void)
+{
+
+}
+
+void Migration_Bg::draw(void)
+{
+    DrawGraphF(pos.x, pos.y, handle, true);
+}
+
+void Migration_Bg::end(void)
 {
     DeleteGraph(handle);
 }

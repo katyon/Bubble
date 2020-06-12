@@ -36,26 +36,22 @@ void Goals::init(void)
         maxNum = 2;
         //I_GoalsObj[0].init(&I_GoalsObj[0], 0,0, 0);
         //I_GoalsObj[1].init(&I_GoalsObj[1], 46 * 64, 64 ,0);
-        I_GoalsObj[0].init(&I_GoalsObj[0], 8 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 0);
-        I_GoalsObj[1].init(&I_GoalsObj[1], 16 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 0);
+        I_GoalsObj[0].init(&I_GoalsObj[0], 8 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 3);
+        I_GoalsObj[1].init(&I_GoalsObj[1], 18 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 3);
         break;
     case 2:
-        maxNum = 2;
-        I_GoalsObj[0].init(&I_GoalsObj[0], 10 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 0);
-        I_GoalsObj[1].init(&I_GoalsObj[1], 16 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 0);
+        maxNum = 1;
+        I_GoalsObj[0].init(&I_GoalsObj[0], 2 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 4);
         break;
     case 3:
         maxNum = 1;
-        I_GoalsObj[0].init(&I_GoalsObj[0], 10 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 0);
+        I_GoalsObj[0].init(&I_GoalsObj[0], 24 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 4, 2, 9);
         break;
     case 4:
         maxNum = 3;
-        I_GoalsObj[0].init(&I_GoalsObj[0], 10 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 0);
-        I_GoalsObj[1].init(&I_GoalsObj[1], 16 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 0);
-        I_GoalsObj[2].init(&I_GoalsObj[1], 16 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 0);
-        break;
-    case 5:
-        maxNum = 3;
+        I_GoalsObj[0].init(&I_GoalsObj[0], 6 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 2);
+        I_GoalsObj[1].init(&I_GoalsObj[1], 14 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 2);
+        I_GoalsObj[2].init(&I_GoalsObj[2], 22 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 2);
         break;
     default:
         maxNum = 1;
@@ -77,7 +73,23 @@ void Goals::init(void)
         case 4:
             I_GoalsObj[i].src.set(900, 0);
             break;
+        case 5:
+            I_GoalsObj[i].src.set(1200, 0);
+            break;
+        case 6:
+            I_GoalsObj[i].src.set(1500, 0);
+            break;
+        case 7:
+            I_GoalsObj[i].src.set(1800, 0);
+            break;
+        case 8:
+            I_GoalsObj[i].src.set(2100, 0);
+            break;
+        case 9:
+            I_GoalsObj[i].src.set(2400, 0);
+            break;
         default:
+            I_GoalsObj[i].src.set(0, 0);
             break;
         }
     }
