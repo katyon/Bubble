@@ -67,6 +67,9 @@ void WaterSource::init(void)
         I_WatereObj[i].exist = true;
     }
     handle = LoadGraph("Data\\Images\\Sprite\\waterSource.png");
+    decisionSH = LoadSoundMem("Data\\Sounds\\decision.mp3");
+    jetSH = LoadSoundMem("Data\\Sounds\\jet.mp3");
+    once = true;
 }
 
 void WaterSource::update(void)
@@ -79,13 +82,42 @@ void WaterSource::update(void)
             if (I_WatereObj[j].exist == false) continue;
             if (M_System.isCollCircleWithRect(I_PlBubbleObj[i].center, I_PlBubbleObj[i].radius, I_WatereObj[nowNum - 1].pos, I_WatereObj[nowNum - 1].rel_pos))
             {
-                if (M_Input->GetKey(KEY_INPUT_LEFT))    I_PlBubbleObj[i].speed.x -= BUBBLE_ACCEL;
-                if (M_Input->GetKey(KEY_INPUT_RIGHT))   I_PlBubbleObj[i].speed.x += BUBBLE_ACCEL;
+                if (M_Input->GetKey(KEY_INPUT_LEFT)) I_PlBubbleObj[i].speed.x -= BUBBLE_ACCEL;
+                if (M_Input->GetKey(KEY_INPUT_RIGHT)) I_PlBubbleObj[i].speed.x += BUBBLE_ACCEL;
             }
         }
     }
-    if (M_Input->GetKeyDown(KEY_INPUT_UP))      nowNum -= 1;
-    if (M_Input->GetKeyDown(KEY_INPUT_DOWN))    nowNum += 1;
+    if (M_Input->GetKey(KEY_INPUT_LEFT))
+    {
+        if (once == true)
+        {
+            PlaySoundMem(jetSH, DX_PLAYTYPE_LOOP, true);
+            once = false;
+        }
+    }
+    else if (M_Input->GetKey(KEY_INPUT_RIGHT))
+    {
+        if (once == true)
+        {
+            PlaySoundMem(jetSH, DX_PLAYTYPE_LOOP, true);
+            once = false;
+        }
+    }
+    else
+    {
+        StopSoundMem(jetSH);
+        once = true;
+    }
+    if (M_Input->GetKeyDown(KEY_INPUT_UP))
+    {
+        PlaySoundMem(decisionSH, DX_PLAYTYPE_BACK, true);
+        nowNum -= 1;
+    }
+    if (M_Input->GetKeyDown(KEY_INPUT_DOWN))
+    {
+        PlaySoundMem(decisionSH, DX_PLAYTYPE_BACK, true);
+        nowNum += 1;
+    }
     if (nowNum < 1) nowNum = 1;
     if (nowNum > maxNum) nowNum = maxNum;
 }
@@ -95,8 +127,8 @@ void WaterSource::draw(void)
     switch (maxNum)
     {
     case 1:
-        DrawExtendGraphF(I_WatereObj[0].pos.x+128, I_WatereObj[0].pos.y, I_WatereObj[0].pos.x, I_WatereObj[0].rel_pos.y, handle, true);
-        DrawExtendGraphF(I_WatereObj[0].rel_pos.x-128, I_WatereObj[0].pos.y, I_WatereObj[0].rel_pos.x, I_WatereObj[0].rel_pos.y, handle, true);
+        DrawExtendGraphF(I_WatereObj[0].pos.x + 128, I_WatereObj[0].pos.y, I_WatereObj[0].pos.x, I_WatereObj[0].rel_pos.y, handle, true);
+        DrawExtendGraphF(I_WatereObj[0].rel_pos.x - 128, I_WatereObj[0].pos.y, I_WatereObj[0].rel_pos.x, I_WatereObj[0].rel_pos.y, handle, true);
         break;
     case 2:
         DrawExtendGraphF(I_WatereObj[0].pos.x + 128, I_WatereObj[0].pos.y, I_WatereObj[0].pos.x, I_WatereObj[0].rel_pos.y, handle, true);
@@ -163,4 +195,6 @@ void WaterSource::draw(void)
 void WaterSource::end(void)
 {
     DeleteGraph(handle);
+    DeleteSoundMem(decisionSH);
+    DeleteSoundMem(jetSH);
 }

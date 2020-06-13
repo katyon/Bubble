@@ -41,4 +41,5 @@ public:
 
 private:
     int handle;
+    int integrationSH;
 };

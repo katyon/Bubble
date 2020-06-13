@@ -111,6 +111,7 @@ void Scene_Choice::init(void)
     M_ChoiceBg.init();
     M_Stage_Select.init();
     M_SelectManager.init();
+    if (M_GameManager.migration == true) M_Scene_Migration.init();
 }
 
 // ステージ選択更新処理
@@ -119,6 +120,7 @@ void Scene_Choice::update(void)
     M_ChoiceBg.update();
     M_Stage_Select.update();
     M_SelectManager.update();
+    M_Scene_Migration.update1();
 }
 
 // ステージ選択描画処理
@@ -127,6 +129,7 @@ void Scene_Choice::draw(void)
     M_ChoiceBg.draw();
     M_Stage_Select.draw();
     M_SelectManager.draw();
+    M_Scene_Migration.draw();
 }
 
 // ステージ選択終了処理
@@ -135,6 +138,7 @@ void Scene_Choice::end(void)
     M_ChoiceBg.end();
     M_Stage_Select.end();
     M_SelectManager.end();
+    M_Scene_Migration.end();
 }
 
 //
@@ -165,13 +169,16 @@ void Scene_Game::update(void)
 {
     if (M_Scene_Migration.getTimer() > 60)
     {
-        M_MapData.update();
-        M_Water_Current.update();
-        M_GameBg.update();
-        M_Bubble.update();
-        M_WaterSource.update();
-        M_Goals.update();
-        // M_UI.update();
+        if (M_GameManager.clear == false)
+        {
+            M_MapData.update();
+            M_Water_Current.update();
+            M_GameBg.update();
+            M_Bubble.update();
+            M_WaterSource.update();
+            M_Goals.update();
+            // M_UI.update();
+        }
         M_GameManager.update();
     }
     else

@@ -36,12 +36,12 @@ void Goals::init(void)
         maxNum = 2;
         //I_GoalsObj[0].init(&I_GoalsObj[0], 0,0, 0);
         //I_GoalsObj[1].init(&I_GoalsObj[1], 46 * 64, 64 ,0);
-        I_GoalsObj[0].init(&I_GoalsObj[0], 8 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 3);
+        I_GoalsObj[0].init(&I_GoalsObj[0], 8 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 4);
         I_GoalsObj[1].init(&I_GoalsObj[1], 18 * MAPCHIP_SIZE, 1 * MAPCHIP_SIZE, 3, 1, 3);
         break;
     case 2:
         maxNum = 1;
-        I_GoalsObj[0].init(&I_GoalsObj[0], 2 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 4);
+        I_GoalsObj[0].init(&I_GoalsObj[0], 2 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 8);
         break;
     case 3:
         maxNum = 1;
@@ -49,9 +49,9 @@ void Goals::init(void)
         break;
     case 4:
         maxNum = 3;
-        I_GoalsObj[0].init(&I_GoalsObj[0], 6 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 2);
-        I_GoalsObj[1].init(&I_GoalsObj[1], 14 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 2);
-        I_GoalsObj[2].init(&I_GoalsObj[2], 22 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 2);
+        I_GoalsObj[0].init(&I_GoalsObj[0], 6 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 3);
+        I_GoalsObj[1].init(&I_GoalsObj[1], 14 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 4);
+        I_GoalsObj[2].init(&I_GoalsObj[2], 22 * MAPCHIP_SIZE, 0 * MAPCHIP_SIZE, 2, 1, 3);
         break;
     default:
         maxNum = 1;

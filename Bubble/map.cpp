@@ -23,6 +23,8 @@ void MapData::init(void)
     width = 130;
     height = 130;
     handle = LoadGraph("Data\\Images\\Sprite\\MapChip.png");
+    divisionSH = LoadSoundMem("Data\\Sounds\\division.mp3");
+    breakSH = LoadSoundMem("Data\\Sounds\\break.mp3");
     goals = LoadGraph("Data\\Images\\Sprite\\goals.png");
     M_MapData.setMapData();
     M_MapData.spawnBubble();
@@ -63,9 +65,9 @@ void MapData::draw(void)
                 case Needle:        src.set(130 * 2, 130 * 1);  break;
                 case Splitter:      src.set(130 * 3, 130 * 1);  break;
                 case BubbleSpawner: src.set(130 * 0, 130 * 2);  break;
-                //case GoalSpawner:   src.set(130 * 1, 130 * 2);  break;
-                //case StartSource:   src.set(130 * 2, 130 * 2);  break;
-                //case EndSource:     src.set(130 * 3, 130 * 2);  break;
+                    //case GoalSpawner:   src.set(130 * 1, 130 * 2);  break;
+                    //case StartSource:   src.set(130 * 2, 130 * 2);  break;
+                    //case EndSource:     src.set(130 * 3, 130 * 2);  break;
                 default: src.set(0, 0);  break;
                 }
                 DrawRectExtendGraph(MAPCHIP_SIZE * Hor, MAPCHIP_SIZE * Ver, MAPCHIP_SIZE * Hor + MAPCHIP_SIZE, MAPCHIP_SIZE * Ver + MAPCHIP_SIZE, src.x, src.y, width, height, handle, true);
@@ -77,6 +79,9 @@ void MapData::draw(void)
 void MapData::end(void)
 {
     DeleteGraph(handle);
+    DeleteGraph(goals);
+    DeleteSoundMem(divisionSH);
+    DeleteSoundMem(breakSH);
 }
 
 void MapData::setMapData(void)
@@ -214,10 +219,14 @@ void MapData::collMapChipWithBubble(PlBubbleObj* obj)
                 {
                     // j
                 case Needle:
+                    PlaySoundMem(breakSH, DX_PLAYTYPE_BACK, true);
+
                     obj->exist = false;
                     break;
                     // •ª—ô
                 case Splitter:
+                    PlaySoundMem(divisionSH, DX_PLAYTYPE_BACK, true);
+
                     obj->pos.x -= MAPCHIP_SIZE / 2 - 10;
                     obj->pos.y -= MAPCHIP_SIZE + obj->radius * 3;
                     obj->speed.x = -2;
@@ -303,6 +312,8 @@ void MapData::collGoalsWithBubble(PlBubbleObj* obj)
         {
             if (obj->level >= I_GoalsObj[i].num)
             {
+                PlaySoundMem(M_TitleManager.decisionSH, DX_PLAYTYPE_BACK, true);
+
                 I_GoalsObj[i].clear = true;
                 obj->exist = false;
             }

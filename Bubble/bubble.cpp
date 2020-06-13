@@ -27,6 +27,7 @@ void PlBubbleObj::init(PlBubbleObj* obj, float posX, float posY)
 void PlBubble::init(void)
 {
     handle = LoadGraph("Data\\Images\\Sprite\\plBubble.png");
+    integrationSH = LoadSoundMem("Data\\Sounds\\integration.mp3");
     for (int i = 0; i < PL_BUBBLE_MAX; i++)
     {
         I_PlBubbleObj[i].init(&I_PlBubbleObj[i], 0, 0);
@@ -59,6 +60,7 @@ void PlBubble::draw(void)
 void PlBubble::end(void)
 {
     DeleteGraph(handle);
+    DeleteSoundMem(integrationSH);
 }
 
 void PlBubble::move(PlBubbleObj* obj)
@@ -109,6 +111,8 @@ void PlBubble::collAnotherBubble(void)
 
             if (M_System.isCollCircle(I_PlBubbleObj[i].center, I_PlBubbleObj[i].radius, I_PlBubbleObj[j].center, I_PlBubbleObj[j].radius))
             {
+                PlaySoundMem(integrationSH, DX_PLAYTYPE_BACK, true);
+
                 if (I_PlBubbleObj[i].pos.x > I_PlBubbleObj[j].pos.x) I_PlBubbleObj[i].pos.x -= I_PlBubbleObj[i].radius;
                 else I_PlBubbleObj[i].pos.x += I_PlBubbleObj[i].radius;
                 I_PlBubbleObj[i].speed.y += (I_PlBubbleObj[i].radius + I_PlBubbleObj[j].radius) / 8;
