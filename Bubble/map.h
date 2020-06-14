@@ -31,5 +31,7 @@ public:
     int mapData[MAPCHIP_V_MAX][MAPCHIP_H_MAX] = { 0 };
 
 private:
+    int divisionSH;
+    int breakSH;
     int goals;
 };

@@ -9,6 +9,7 @@ class Scene_Migration :public Singleton<Scene_Migration>
 private:
     int handle0;
     int handle1;
+    int zavanSH;
 
     int Y;
     float changing;
@@ -21,6 +22,8 @@ private:
     float timer;
     float pos_x[MIGRATION_MAX];
     float pos_y[MIGRATION_MAX];
+
+    bool  once;
 
 public:
     void init(void);

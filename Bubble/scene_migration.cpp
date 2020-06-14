@@ -8,6 +8,7 @@ void Scene_Migration::init()
 {
     handle0 = LoadGraph("Data\\Images\\Sprite\\bubble.png");
     handle1 = LoadGraph("Data\\Images\\Bg\\Game_Bg.png");
+    zavanSH = LoadSoundMem("Data\\Sounds\\zavan.mp3");
     timer = 0;
     movement = 0;
     for (int i = 0; i < MIGRATION_MAX; i++)
@@ -15,10 +16,17 @@ void Scene_Migration::init()
         pos_x[i] = 0;
         pos_y[i] = 1080;
     }
+    once = true;
 }
 
 void Scene_Migration::update0()
 {
+    if (once == true)
+    {
+        PlaySoundMem(zavanSH, DX_PLAYTYPE_BACK, true);
+        once = false;
+    }
+
     timer++;
     if (timer > 100)
     {
@@ -51,6 +59,12 @@ void Scene_Migration::update0()
 
 void Scene_Migration::update1()
 {
+    if (once == true)
+    {
+        PlaySoundMem(zavanSH, DX_PLAYTYPE_BACK, true);
+        once = false;
+    }
+    
     {
         timer++;
         if (timer < 60)
@@ -133,6 +147,7 @@ void Scene_Migration::end()
 {
     DeleteGraph(handle0);
     DeleteGraph(handle1);
+    DeleteSoundMem(zavanSH);
 }
 
 void Scene_Migration::setTimer(float time)

@@ -8,6 +8,7 @@
 void Stage_Select::init()
 {
     handle = LoadGraph("Data\\Images\\Sprite\\bubble_number.png");
+    integrationSH= LoadSoundMem("Data\\Sounds\\integration.mp3");
     pos = { 200, 200 };
     select = 1;
     timer = 0;
@@ -17,6 +18,7 @@ void Stage_Select::init()
 
 void Stage_Select::update()
 {
+
     timer++;
     magnification = Elastic::easeOut(timer, 0, 1, 180);            // easing function
     sin  = std::sinf(M_Usable.getGameTime() * 0.04 +  0) * 20;     // sin function
@@ -39,9 +41,23 @@ void Stage_Select::update()
 
     if (bubble_effect == false)
     {
-        if (M_Input->GetKeyDown(KEY_INPUT_LEFT)) { select -= 1; timer = 12; }
-        if (M_Input->GetKeyDown(KEY_INPUT_RIGHT)) { select += 1; timer = 12; }
-        if (M_Input->GetKeyDown(KEY_INPUT_SPACE)) M_SelectManager.change = true;
+        if (M_Input->GetKeyDown(KEY_INPUT_LEFT))
+        {
+            PlaySoundMem(integrationSH, DX_PLAYTYPE_BACK, true);
+            select -= 1;
+            timer = 12;
+        }
+        if (M_Input->GetKeyDown(KEY_INPUT_RIGHT))
+        {
+            PlaySoundMem(integrationSH, DX_PLAYTYPE_BACK, true);
+            select += 1;
+            timer = 12;
+        }
+        if (M_Input->GetKeyDown(KEY_INPUT_SPACE))
+        {
+            PlaySoundMem(M_TitleManager.decisionSH, DX_PLAYTYPE_BACK, true);
+            M_SelectManager.change = true;
+        }
     }
 
     if (select > STAGE_MAX) { select = 1; }
@@ -125,4 +141,5 @@ void Stage_Select::draw()
 void Stage_Select::end()
 {
     DeleteGraph(handle);
+    DeleteSoundMem(integrationSH);
 }

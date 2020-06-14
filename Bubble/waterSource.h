@@ -28,5 +28,8 @@ private:
     int nowNum;
     int maxNum;
     int handle;
+    int decisionSH;
+    int jetSH;
+    bool once;
     unsigned int cr;
 };

@@ -9,6 +9,7 @@ class Stage_Select : public Singleton<Stage_Select>
 private:
     vec2f pos;
     int   handle;
+    int   integrationSH;
     float magnification;  // Šg‘å—¦
     int   timer;
     int   effect_timer;
