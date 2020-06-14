@@ -6,7 +6,7 @@
 #include "singleton.h"
 
 // 定数 ----------------------------------------------------
-#define STR_WINTTL				"Brightless"    // ウィンドウタイトル（任意に設定）
+#define STR_WINTTL				"Tower of Bubble"    // ウィンドウタイトル（任意に設定）
 #define STR_MSGTTL_ASKFS		"起動処理"
 #define STR_MSG_ASKFS			"フルスクリーンで起動しますか？"
 
